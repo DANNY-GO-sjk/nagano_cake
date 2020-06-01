@@ -8,7 +8,7 @@
 	    		<% if user_signed_in? %>
 
 	    			<div class= 'name'>
-	                	ようこそ<%= "user_#{family_name} #{first_name}" %>!!
+	                	ようこそ<%= "#{current_user.family_name} #{current_user.first_name}" %>!!
 	    			</div>
 
 	    			<li>

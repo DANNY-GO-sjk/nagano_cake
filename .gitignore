@@ -31,3 +31,5 @@
 /config/master.key
 .DS_Store
 
+# Mr.のエディタの設定ファイル
+/.vscode

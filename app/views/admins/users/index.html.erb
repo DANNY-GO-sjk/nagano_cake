@@ -1,0 +1,35 @@
+<div class="container">
+	<div class="row">
+		<h3>会員一覧</h3>
+	</div>
+	<div class="row">
+		<tabale class="table">
+			<thead>
+				<tr>
+					<th>会員ID</th>
+					<th>氏名</th>
+					<th>メールアドレス</th>
+					<th>ステータス</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @users.each do |user| %>
+					<tr>
+						<td>
+							<%= user.id %>
+						</td>
+						<td>
+							<%= "#{user.family_name} #{user.first_name}" %>
+						</td>
+						<td>
+							<%= user.email %>
+						</td>
+						<td>
+							<%= user.is_valid %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</tabale>
+	</div>
+</div>

@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
 	def show
-	   @user = User.find(params[:id])
+	   @user = current_user
 	end
 
 	def edit
 		@user = User.find(params[:id])
+		#本当はdeviseのビューで行う機能は後で行う
+		#deviseコントローラーを使用
+
+
 	end
 
 	def update

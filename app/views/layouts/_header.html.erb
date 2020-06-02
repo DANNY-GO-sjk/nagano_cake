@@ -7,9 +7,9 @@
         <ul class='nav navbaer-nav navbar-right'>
           <% if user_signed_in? %>
 
-            <div class= 'name'>
-                    ようこそ<%= "#{current_user.family_name} #{current_user.first_name}" %>!!
-            </div>
+	    			<div class= 'name'>
+	                	ようこそ<%= "#{current_user.family_name} #{current_user.first_name}" %>さん!!
+	    			</div>
 
             <li>
               <%= link_to "マイページ",user_path(current_user), class: "btn-sm btn-success" %>

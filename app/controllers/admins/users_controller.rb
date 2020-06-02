@@ -1,2 +1,2 @@
-class Admin::UsersController < ApplicationController
+class Admins::UsersController < ApplicationController
 end

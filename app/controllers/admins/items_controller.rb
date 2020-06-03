@@ -17,4 +17,10 @@ class Admins::ItemsController < ApplicationController
 			render :new
 		end
 	end
+
+	private
+
+	def item_params
+		params.require(:item).permit(:genre_id, :name, :price, :image, :explanation, :is_valid)
+	end
 end

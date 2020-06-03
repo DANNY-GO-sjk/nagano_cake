@@ -1,6 +1,6 @@
 <h2>商品新規登録<h2>
 
-<%= form_for(@item) do |f| %>
+<%= form_for(@item, url:'/admins/items') do |f| %>
 	<%= f.attachment_field :image %>
 
 	<%= f.label :name, "商品名" %>
@@ -10,7 +10,7 @@
 	<%= f.text_area :explanation %>
 
 	<%= f.label :genre, "ジャンル" %>
-	<%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %>
+	<%= f.collection_select :genre_id, Genre.all, :id, :name %>
 
 	<%= f.label :price, "税抜価格" %>
 	<%= f.text_field :price %>

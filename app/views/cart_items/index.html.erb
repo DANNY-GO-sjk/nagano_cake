@@ -1,12 +1,13 @@
 <div class="row">
   <div class="col-xs-4">
     <h2>ショッピングカート</h2>
+    <%= link_to "テスト用/ケーキをカートに追加", cart_items_path, method: :post %>
   </div>
   <div class="col-xs-offset-6 col-xs-2">
     <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete  %>
   </div>
 </div>
-
+<% total_price = 0 %><%#= FIX: 仮設置 %>
 <div class="row">
   <table class="table cart_items-table">
     <thead>
@@ -20,14 +21,19 @@
     </thead>
 
     <tbody>
-      <% @cart_items.each do |item| %>
+      <% @cart_items.each do |cart_item| %>
+        <% price = cart_item.item.price * cart_item.how_many %>
         <tr>
-          <td><%= item.name %></td>
-          <td><%= item.price %></td>
-          <td><%= item.haw_many %></td>
-          <td><%= item.price * item.haw_many %>円</td>
-          <td><%= link_to "削除する", cart_item_path(@item.id), method: :delete %></td>
+          <td><%= cart_item.item.name %></td>
+          <td><%= cart_item.item.price %></td>
+
+          <%# FIX: 数量設定機能は未実装です %>
+          <td><%= cart_item.how_many %></td>
+
+          <td><%= price %>円</td>
+          <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete %></td>
         </tr>
+        <% total_price += price %>
       <% end %>
     </tbody>
   </table>
@@ -41,7 +47,7 @@
     <table class="table">
       <tr>
         <th>合計金額</th>
-        <td>300億円</td>
+        <td><%= total_price %>円</td>
       </tr>
     </table>
   </div>

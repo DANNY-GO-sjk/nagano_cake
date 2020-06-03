@@ -19,6 +19,10 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    if @order.has_shipping_address?
+    else
+      render :new
+    end
   end
 
   def back

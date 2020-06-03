@@ -4,13 +4,7 @@
           <span>LOGO</span>
       </nav>
 
-      <span>
-        ようこそ
-        <% if !current_user.family_name.nil? && !current_user.first_name %>
-          <%= "#{current_user.family_name} #{current_user.first_name}" %>さん
-        <% end %>
-        !!
-      </div>
+      <span>ようこそ<%#= "#{current_user.family_name} #{current_user.first_name}" %>さん!!</span>
 
       <nav>
         <ul class='nav navbar-nav navbar-right'>

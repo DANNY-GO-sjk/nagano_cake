@@ -1,5 +1,9 @@
-<%# FIX: 消費税の定義 本当は他の場所で定義したい %>
-<% CONSUMPTION_TAX = 1 + 0.8 %>
+<%# FIX: 消費税変数の定義 本当は他の場所で定義したい %>
+<% consumption_tax = 1 + 0.08 %>
+<%# FIX: 商品合計変数の定義 本当は他の場所で定義したい %>
+<% total_price = 0 %>
+<%# FIX: 送料変数の定義 本当は他の場所で定義したい %>
+<% shipping_price = 800 %>
 
 <h2>注文入力確認</h2>
 <div class="row">
@@ -14,15 +18,56 @@
         </tr>
       </thead>
       <tbody>
-        <%= current_user.cart_items.each do |cart_item| %>
-        <td><%= cart_item.item.name %></td>
-        <td><%= cart_item.item.price * CONSUMPTION_TAX %></td>
-        <td><%= cart_item.how_many %></td>
-        <td><%= cart_item.item.price * CONSUMPTION_TAX * cart_item.how_many %></td>
+        <% current_user.cart_items.each do |cart_item| %>
+          <tr>
+            <%# FIX: 本当はここで変数を定義しないほうが良いと思う %>
+            <%# FIX: 単価の時点で小数点以下は切り捨てしている %>
+            <% price = (cart_item.item.price * consumption_tax).floor %>
+            <% subtotal_price = price * cart_item.how_many %>
+            <td><%= cart_item.item.name %></td>
+            <td><%= price %></td>
+            <td><%= cart_item.how_many %></td>
+            <td><%= subtotal_price %></td>
+            <% total_price += subtotal_price %>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
   <div class="col-xs-4">
+    <table class="table">
+      <tr>
+        <th>送料</th>
+        <td><%= shipping_price %></td>
+      </tr>
+      <tr>
+        <th>商品合計</th>
+        <td><%= total_price %></td>
+      </tr>
+      <tr>
+        <th>請求金額</th>
+        <td><%= total_price + shipping_price %></td>
+      </tr>
+    </table>
   </div>
 </div>
+<div class="row">
+  <h3>支払方法</h3>
+  <span><%= @order.payment_method %></span>
+
+  <h3>お届け先</h3>
+  <span><%= @order.postcode %></span>
+  <span><%= @order.address %></span>
+  <span><%= @order.receiver %></span>
+</div>
+
+<%= form_with model: @order, local: true do |f| %>
+  <%= f.hidden_field :payment_method %>
+  <%= f.hidden_field :postcode %>
+  <%= f.hidden_field :address %>
+  <%= f.hidden_field :receiver %>
+    <div class="row actions">
+    <%= f.submit "購入を確定する" %>
+  </div>
+<% end %>
 <%= debug(params) if Rails.env.development? %>

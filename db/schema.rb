@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_170722) do
+ActiveRecord::Schema.define(version: 2020_06_01_053611) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(version: 2020_06_01_170722) do
   end
 
   create_table "cart_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "user_id", null: false
+    t.integer "how_many", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "item_id"
-    t.integer "user_id"
-    t.integer "how_many"
     t.index ["item_id"], name: "index_cart_items_on_item_id"
     t.index ["user_id"], name: "index_cart_items_on_user_id"
   end
@@ -40,8 +40,15 @@ ActiveRecord::Schema.define(version: 2020_06_01_170722) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.integer "genre_id"
+    t.string "name", null: false
+    t.integer "price", null: false
+    t.string "image_id"
+    t.text "explanation"
+    t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_items_on_genre_id"
   end
 
   create_table "order_items", force: :cascade do |t|

@@ -1,15 +1,14 @@
 class ShippingAddressesController < ApplicationController
-	def index
-    @user = current_user #ログイン中の会員の配送先情報のみ取得する
-  	@shipping_address = ShippingAddress.new
-    @shipping_addresses = ShippingAddress.all
+  def index
+    @shipping_address = ShippingAddress.new
+    @shipping_addresses = current_user.shipping_addresses
   end
 
   def create
-  	@shipping_address = ShippingAddress.new(shipping_address_params)
-    @shipping_address.user_id = current_user.id #配送先に配送先に会員idを登録
+    @shipping_address = ShippingAddress.new(shipping_address_params)
+    @shipping_address.user_id = current_user.id # 配送先に配送先に会員idを登録
     @shipping_address.save
-  	redirect_to shipping_addresses_path
+    redirect_to shipping_addresses_path
   end
 
   def edit
@@ -28,11 +27,9 @@ class ShippingAddressesController < ApplicationController
     redirect_to shipping_addresses_path
   end
 
-
   private
+
   def shipping_address_params
-  	params.require(:shipping_address).permit(:postcode,:address,:receiver)
+    params.require(:shipping_address).permit(:postcode, :address, :receiver)
   end
 end
-
-

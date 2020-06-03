@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource)
-    users_path(resource)
+    home_path
   end
 
   def after_sign_out_path_for(resource)
@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name, :family_name_yomi, :first_name_yomi, :postcode, :address, :phone_number,:email])
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:name,:email,:password])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
   end
 end

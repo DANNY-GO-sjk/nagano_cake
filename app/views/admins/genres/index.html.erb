@@ -1,29 +1,33 @@
 <h2>ジャンル一覧・追加<h2>
 
-<%= form_for(@genre) do |f| %>
+<%= form_for(@genre, url:'/admins/genres') do |f| %>
 
 <%= f.label :name, "ジャンル" %>
-<%= f.textarea :name %>
+<%= f.text_area :name %>
 
 <%= f.radio_button :is_valid, :有効 %>
 <%= f.label :有効 %>
 <%= f.radio_button :is_valid, :無効 %>
 <%= f.label :無効 %>
 
-<%= f.sumbit "追加" %>
+<%= f.submit "追加" %>
 <% end %>
 
 <table>
 	<thead>
-		<th>ジャンル</th>
-		<th>状態</th>
-		<th></th>
+		<tr>
+			<th>ジャンル</th>
+			<th>状態</th>
+			<th></th>
+		</tr>
 	</thead>
 	<tbody>
-		<%= @genres.each do |genre| %>
-		<td><%= genre.name %></td>
-		<td><%= genre.is_valid %></td>
-		<td>編集する（未実装）</td>
-		<% end %>
+		<tr>
+			<% @genres.each do |genre| %>
+			<td><%= genre.name %></td>
+			<td><%= genre.is_valid %></td>
+			<td>編集する（未実装）</td>
+			<% end %>
+		</tr>
 	</tbody>
 </table>

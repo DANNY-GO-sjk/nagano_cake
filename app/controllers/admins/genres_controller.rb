@@ -1,6 +1,6 @@
 class Admins::GenresController < ApplicationController
 	def index
-		@genres = Genres.all
+		@genres = Genre.all
 		@genre = Genre.new
 	end
 	def create

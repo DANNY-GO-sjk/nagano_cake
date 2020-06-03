@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'users/edit_withdraw' => 'users#edit_withdraw', as: 'edit_user_withdraw'
   put 'users' => 'users#withdraw', as: 'user_withdraw'
 
-  resources :shipping_adresses, only: [:index, :create, :edit, :update, :destroy]
+  resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
 
   resources :cart_items, only: [:index, :create, :updeate, :destroy]
   get 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
     resources :order_items, only: :update
-    get '/home' => 'admins/home#index', as: 'admin_home'
+    get '/home' => 'home#index', as: 'home'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

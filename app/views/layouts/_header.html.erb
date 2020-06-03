@@ -3,19 +3,17 @@
       <nav class='nav navbar-nav navbar-left' >
           <span>LOGO</span>
       </nav>
+
+      <span>ようこそ<%#= "#{current_user.family_name} #{current_user.first_name}" %>さん!!</span>
+
       <nav>
-        <ul class='nav navbaer-nav navbar-right'>
+        <ul class='nav navbar-nav navbar-right'>
           <% if user_signed_in? %>
-
-	    			<div class= 'name'>
-	                	ようこそ<%= "#{current_user.family_name} #{current_user.first_name}" %>さん!!
-	    			</div>
-
             <li>
-              <%= link_to "マイページ",users_path(current_user), class: "btn-sm btn-success" %>
+              <%= link_to "マイページ", users_path(current_user), class: "btn-sm" %>
             </li>
             <li>
-              <%= link_to "商品一覧",items_path, class: "btn-sm btn-success" %>
+              <%= link_to "商品一覧", items_path, class: "btn-sm btn-success" %>
             </li>
             <li>
               <%= link_to "カート", cart_items_path, class: "btn-sm btn-success" %>
@@ -25,7 +23,7 @@
             </li>
           <% else %>
             <li>
-              <%= link_to "商品一覧",items_path, class: "btn-sm btn-success" %>
+              <%= link_to "商品一覧", items_path, class: "btn-sm btn-success" %>
             </li>
             <li>
               <%#= link_to "新規登録", new_user_ragistration_path, class:"btn-sm btn-success" %>

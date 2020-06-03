@@ -1,0 +1,23 @@
+<h2>商品新規登録<h2>
+
+<%= form_for(@item) do |f| %>
+	<%= f.attachment_field :image %>
+
+	<%= f.label :name, "商品名" %>
+	<%= f.text_field :name %>
+
+	<%= f.label :explanation, "商品説明" %>
+	<%= f.text_area :explanation %>
+
+	<%= f.label :genre, "ジャンル" %>
+	<%= f.collection_select :genre_id, item.all, :id, :name, include_blank: "--選択してください--" %>
+
+	<%= f.label :price, "税抜価格" %>
+	<%= f.text_field :price %>
+
+	<%= f.label :is_valid, "販売ステータス" %>
+	<%= f.select :is_valid, Item.is_valid.keys.map {|k| [k,k]}, {} %>
+
+	<%= f.submit "新規登録" %>
+
+<% end %>

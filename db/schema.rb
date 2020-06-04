@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_053611) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_valid", null: false
+    t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,13 +54,29 @@ ActiveRecord::Schema.define(version: 2020_06_01_053611) do
   end
 
   create_table "order_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "item_id", null: false
+    t.integer "how_many", null: false
+    t.integer "price", null: false
+    t.integer "progress", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_order_items_on_item_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "progress", default: 0, null: false
+    t.integer "shipping_price", default: 800, null: false
+    t.integer "total_price", null: false
+    t.integer "payment_method", default: 0, null: false
+    t.string "postcode", null: false
+    t.string "address", null: false
+    t.string "receiver", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "shipping_addresses", force: :cascade do |t|

@@ -1,6 +1,8 @@
 class CreateGenres < ActiveRecord::Migration[5.2]
   def change
     create_table :genres do |t|
+      t.string :name
+      t.boolean :is_valid, null: false, defailt: true
 
       t.timestamps
     end

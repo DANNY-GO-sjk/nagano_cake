@@ -1,0 +1,26 @@
+<h2>商品詳細</h2>
+
+<%= attachment_image_tag @item, :image, format: 'jpeg', size: "100x300" %>
+
+<table>
+	<tr>
+		<th>商品名</th>
+		<td><%= @item.name %></td>
+	</tr>
+	<tr>
+		<th>商品説明</th>
+		<td><%= @item.explanation %></td>
+	</tr>
+	<tr>
+		<th>ジャンル</th>
+		<td><%= @item.genre.name %></td>
+	</tr>
+	<tr>
+		<th>税込価格(税抜価格)</th>
+		<td><%= @item.tax_included_price(@item.price).floor %>(<%= @item.price %>)</td>
+	</tr>
+	<tr>
+		<th>販売ステータス</th>
+		<td><%= @item.is_valid %></td>
+	</tr>
+</table>

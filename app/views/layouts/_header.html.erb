@@ -22,6 +22,12 @@
             <li>
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn-sm btn-success" %>
             </li>
+          <% elsif admin_signed_in? %>
+            <li class="character_position"><%= link_to '商品一覧',admins_item_path,class: 'btn-sm btn-success' %></li>
+            <li><%= link_to '会員一覧', admins_users_path,class: 'btn-sm btn-success' %></li>
+            <li><%= link_to '注文履歴一覧', admins_orders_path,class: 'btn-sm btn-success' %></li>
+            <li><%= link_to 'ジャンル一覧', admins_genres_path,class: 'btn-sm btn-success' %></li>
+            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete,class: 'btn-sm btn-success' %></li>
           <% else %>
             <li>
               <%= link_to "商品一覧", items_path, class: "btn-sm btn-success" %>

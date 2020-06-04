@@ -17,7 +17,14 @@ User.create!(
    password: 'testtest',
 )
 
+Genre.create!(
+   name: "プリン",
+   is_valid: true
+)
+
 Item.create!(
    name: "ケーキ",
    price: 500,
+   is_valid: true,
+   genre_id: 1
 )

@@ -1,0 +1,14 @@
+<h1>商品一覧</h1>
+<%= @items.each do |item| %>
+	<div class='thumbnail'>
+		<%= link_to users_item_path(prodect) do %>
+			<%= attachment_image_tag item, :image,:fill,550,400,fallback: 'no_image.jpg' %>
+			<div class='caption'>
+				<label><%= item.name %></label>
+				<p>¥金額　未実装</p>
+				<!-- ジャンル未実装 -->
+
+			</div>
+		<% end %>
+	</div>
+<% end %>

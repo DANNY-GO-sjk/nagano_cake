@@ -10,11 +10,25 @@ class OrdersController < ApplicationController
   end
 
   def create
-    current_user.orders.create(order_params)
-    redirect_to home_path # FIX: 本当はサンクスページ
+    order = Order.new(order_params)
+    order.user_id = current_user.id
+    if order.save
+      current_user.cart_items.each do |cart_item|
+        OrderItem.create(
+          order_id: order.id,
+          item_id: cart_item.item.id,
+          how_many: cart_item.how_many,
+          price: cart_item.item.price
+        )
+        cart_item.destroy
+      end
+      redirect_to home_path # FIX: 本当はサンクスページ
+    else
+    end
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   def confirm

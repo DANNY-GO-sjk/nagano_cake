@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
   end
   devise_for :users
+  patch 'users/edit', to: 'users#update'
 
   get 'home' => 'home#index', as: 'home'
 

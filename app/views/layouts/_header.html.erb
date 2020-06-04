@@ -4,11 +4,12 @@
           <span>LOGO</span>
       </nav>
 
-      <span>ようこそ<%#= "#{current_user.family_name} #{current_user.first_name}" %>さん!!</span>
 
       <nav>
         <ul class='nav navbar-nav navbar-right'>
           <% if user_signed_in? %>
+            <span>ようこそ<%#= "#{current_user.family_name} #{current_user.first_name}" %>さん!!</span>
+
             <li>
               <%= link_to "マイページ", users_path(current_user), class: "btn-sm" %>
             </li>
@@ -21,12 +22,18 @@
             <li>
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn-sm btn-success" %>
             </li>
+          <% elsif admin_signed_in? %>
+            <li class="character_position"><%= link_to '商品一覧',admins_item_path,class: 'btn-sm btn-success' %></li>
+            <li><%= link_to '会員一覧', admins_users_path,class: 'btn-sm btn-success' %></li>
+            <li><%= link_to '注文履歴一覧', admins_orders_path,class: 'btn-sm btn-success' %></li>
+            <li><%= link_to 'ジャンル一覧', admins_genres_path,class: 'btn-sm btn-success' %></li>
+            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete,class: 'btn-sm btn-success' %></li>
           <% else %>
             <li>
               <%= link_to "商品一覧", items_path, class: "btn-sm btn-success" %>
             </li>
             <li>
-              <%#= link_to "新規登録", new_user_ragistration_path, class:"btn-sm btn-success" %>
+              <%= link_to "新規登録", new_user_registration_path, class:"btn-sm btn-success" %>
             </li>
             <li>
               <%= link_to "ログイン", new_user_session_path ,class: "btn-sm btn-success" %>

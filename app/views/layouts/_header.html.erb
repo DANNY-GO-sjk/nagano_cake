@@ -4,11 +4,12 @@
           <span>LOGO</span>
       </nav>
 
-      <span>ようこそ<%#= "#{current_user.family_name} #{current_user.first_name}" %>さん!!</span>
 
       <nav>
         <ul class='nav navbar-nav navbar-right'>
           <% if user_signed_in? %>
+            <span>ようこそ<%#= "#{current_user.family_name} #{current_user.first_name}" %>さん!!</span>
+
             <li>
               <%= link_to "マイページ", users_path(current_user), class: "btn-sm" %>
             </li>
@@ -26,7 +27,7 @@
               <%= link_to "商品一覧", items_path, class: "btn-sm btn-success" %>
             </li>
             <li>
-              <%#= link_to "新規登録", new_user_ragistration_path, class:"btn-sm btn-success" %>
+              <%= link_to "新規登録", new_user_registration_path, class:"btn-sm btn-success" %>
             </li>
             <li>
               <%= link_to "ログイン", new_user_session_path ,class: "btn-sm btn-success" %>

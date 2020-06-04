@@ -25,8 +25,14 @@ User.create!(
    is_valid: true,
 )
 
+Genre.create!(
+   name: '焼き菓子',
+   is_valid: true,
+)
+
 Item.create!(
    name: 'ケーキ',
+   genre_id: 1,
    price: 500,
    explanation: '商品説明文が入ります',
    is_valid: true,

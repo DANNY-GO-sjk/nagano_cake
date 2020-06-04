@@ -10,4 +10,8 @@ class Item < ApplicationRecord
 	validates :image, presence: true
 
 	attachment :image
+
+	def tax_included_price
+		price * 1.08
+	end
 end

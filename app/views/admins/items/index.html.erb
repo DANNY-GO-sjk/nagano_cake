@@ -16,8 +16,7 @@
 		<tr>
 			<% @items.each do |item| %>
 			<td><%= item.id %></td>
-			<!-- 詳細画面未実装 -->
-			<td><%= item.name %></td>
+			<td><%= link_to item.name, admins_item_path(item.id) %></td>
 			<td><%= item.price %></td>
 			<!-- item.genre_idのname -->
 			<td><%= item.genre.name %></td>

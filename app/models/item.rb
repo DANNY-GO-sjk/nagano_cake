@@ -11,7 +11,7 @@ class Item < ApplicationRecord
 
 	attachment :image
 
-	def tax_included_price
+	def tax_included_price(price)
 		price * 1.08
 	end
 end

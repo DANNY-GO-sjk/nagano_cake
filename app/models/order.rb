@@ -11,8 +11,10 @@ class Order < ApplicationRecord
   validates :address, presence: true
   validates :receiver, presence: true
 
-  enum payment_method: { credit_card: 0, bank_transfer: 1 }
+  enum payment_method: { クレジットカード: 0, 銀行振込: 1 }
+  enum progress: { 入金待ち: 0, 入金確認: 1, 製作中: 2, 発送準備中: 3, 発送済: 4 }
 
+  # FIX: shipping_addressでバリデーションしたほうが良い。
   def has_shipping_address?
     return false if postcode.blank?
     return false if address.blank?

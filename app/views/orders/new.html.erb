@@ -2,10 +2,10 @@
 <%= form_with model: @order, url: order_confirm_path, local: true do |f| %>
 
   <h3>支払方法</h3>
-  <%= f.radio_button :payment_method, :credit_card, checked: "checked" %>
-  <%= f.label :payment_method_credit_card, 'クレジットカード' %>
-  <%= f.radio_button :payment_method, :bank_transfer %>
-  <%= f.label :payment_method_bank_transfer, '銀行振込' %>
+  <%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>
+  <%= f.label :payment_method_クレジットカード, 'クレジットカード' %>
+  <%= f.radio_button :payment_method, :銀行振込 %>
+  <%= f.label :payment_method_銀行振込, '銀行振込' %>
 
   <h3>お届け先</h3>
   <%= f.label :postcode, '郵便番号' %>

@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   validates :explanation, presence: true
   validates :price, presence: true
   validates :image, presence: true
+
 	attachment :image
 
 	def tax_included_price(price)

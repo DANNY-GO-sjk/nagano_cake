@@ -18,4 +18,6 @@ class User < ApplicationRecord
   validates :encrypted_password, presence: true
   validates :phone_number, presence: true
   validates :is_valid, presence: true
+
+  enum is_valid: { 有効: true, 無効: false }
 end

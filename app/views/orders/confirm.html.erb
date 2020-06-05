@@ -18,13 +18,11 @@
       <tbody>
         <% current_user.cart_items.each do |cart_item| %>
           <tr>
-            <%# FIX: 本当はここで変数を定義しないほうが良いと思う %>
-            <% subtotal_price = cart_item.item.price * cart_item.how_many %>
             <td><%= cart_item.item.name %></td>
-            <td><%= cart_item.item.price %></td>
+            <td><%= cart_item.unit_price %></td>
             <td><%= cart_item.how_many %></td>
-            <td><%= subtotal_price %></td>
-            <% total_price += subtotal_price %>
+            <td><%= cart_item.subtotal_price %></td>
+            <% total_price += cart_item.subtotal_price %>
           </tr>
         <% end %>
       </tbody>
@@ -67,4 +65,3 @@
     <%= f.submit "購入を確定する" %>
   </div>
 <% end %>
-<%= debug(params) if Rails.env.development? %>

@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="row">
+		<h3>注文履歴詳細</h3>
+	</div>
+	<div class="row">
+		<table class="table">
+		<% @order do |o| %>
+				<tr>
+					<th>購入者</th>
+					<td>o.user_id.family_name.first_name</td>
+				</tr>
+				<tr>
+					<th>配送先</th>
+					<td>o.address</td>
+				</tr>
+				<tr>
+					<th>支払い方法</th>
+					<td>o.payment_method</td>
+				</tr>
+				<tr>
+					<th>注文ステータス</th>
+					<td><!--o.progress-->注文ステータス未実装</td>
+					<td><%= o.submit '更新　未実装', class: "btn btn-default" %></td>
+				</tr>
+		<% end %>
+		</table>
+	</div>
+</div>		

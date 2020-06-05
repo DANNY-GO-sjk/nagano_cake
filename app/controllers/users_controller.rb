@@ -30,6 +30,6 @@ class UsersController < ApplicationController
       :address,
       :phone_number,
       :is_valid
-      )
+    )
   end
 end

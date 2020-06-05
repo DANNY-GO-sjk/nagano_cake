@@ -8,9 +8,9 @@ class Item < ApplicationRecord
   validates :explanation, presence: true
   validates :price, presence: true
   validates :image, presence: true
-	attachment :image
+  attachment :image
 
-	def tax_included_price(price)
-		price * 1.08
-	end
+  def tax_included_price(price)
+    (price * 1.08).floor
+  end
 end

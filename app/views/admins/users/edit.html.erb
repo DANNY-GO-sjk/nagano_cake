@@ -1,0 +1,45 @@
+<h3>山田花子さんの会員情報編集</h3>
+
+<div>
+  <%= form_with model: @user, url: admins_user_path, local: true do |f| %>
+    <div class="row">
+      <span class="col-xs-3">会員ID</span>
+      <span class="col-xs-3"><%= @user.id %></span>
+    </div>
+    <div class="row">
+      <span class="col-xs-3">氏名</span>
+      <span class="col-xs-3">
+        <%= f.text_field :family_name %>
+        <%= f.text_field :first_name %>
+      </span>
+    </div>
+    <div class="row">
+      <span class="col-xs-3">フリガナ</span>
+      <span class="col-xs-3"></span>
+    </div>
+    <div class="row">
+      <span class="col-xs-3">郵便番号</span>
+      <span class="col-xs-3"></span>
+    </div>
+    <div class="row">
+      <span class="col-xs-3">住所</span>
+      <span class="col-xs-3"></span>
+    </div>
+    <div class="row">
+      <span class="col-xs-3">電話番号</span>
+      <span class="col-xs-3"></span>
+    </div>
+    <div class="row">
+      <span class="col-xs-3">メールアドレス</span>
+      <span class="col-xs-3"></span>
+    </div>
+
+    <%# is_valid のtrue を :有効 、false を :無効 で管理してます（enumで） %>
+    <%= f.radio_button :is_valid, :有効, checked: "checked" %>
+    <%= f.label :is_valid_有効, '有効' %>
+    <%= f.radio_button :is_valid, :無効 %>
+    <%= f.label :is_valid_無効, '退会済み' %>
+
+    <%= f.submit '変更を保存する' %>
+  <% end %>
+</div>

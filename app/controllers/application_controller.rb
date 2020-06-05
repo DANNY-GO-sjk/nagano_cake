@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       :postcode,
       :address,
       :phone_number,
-      :email
+      :email,
     ])
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
   end

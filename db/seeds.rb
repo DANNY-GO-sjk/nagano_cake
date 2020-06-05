@@ -35,5 +35,6 @@ Item.create!(
    genre_id: 1,
    price: 500,
    explanation: '商品説明文が入ります',
+   image_id: 1234, # バリデーションエラー回避のためにとりあえずの設定
    is_valid: true,
 )

@@ -7,8 +7,11 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :explanation, presence: true
   validates :price, presence: true
-  # 画像設定の手間を省くため一時的にコメントアウトします。Mr.
-  # validates :image, presence: true
+  validates :image, presence: true
 
-  # attachment :image
+	attachment :image
+
+	def tax_included_price(price)
+		price * 1.08
+	end
 end

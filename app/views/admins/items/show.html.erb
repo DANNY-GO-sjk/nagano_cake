@@ -1,6 +1,6 @@
 <h2>商品詳細</h2>
 
-<%= attachment_image_tag @item, :image, format: 'jpeg', size: "100x300" %>
+<%= attachment_image_tag @item, :image, format: 'jpeg', size: "257x182" %>
 
 <table>
 	<tr>
@@ -24,3 +24,5 @@
 		<td><%= @item.is_valid %></td>
 	</tr>
 </table>
+
+<%= link_to "編集する", edit_admins_item_path(@item.id) %>

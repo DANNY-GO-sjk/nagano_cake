@@ -22,9 +22,19 @@ class Admins::ItemsController < ApplicationController
 	def show
 		@item = Item.find(params[:id])
   end
-  
+
 	def edit
 		@item = Item.find(params[:id])
+	end
+
+	def update
+		if @item = Item.find(params[:id])
+			@item.update(item_params)
+			flash[:notice] = "編集を保存しました"
+			redirect_to admins_item_path(@item.id)
+		else
+			render :edit
+		end
 	end
 
 	private

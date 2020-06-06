@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_053611) do
     t.integer "price", null: false
     t.string "image_id"
     t.text "explanation"
-    t.boolean "is_valid", null: false
+    t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre_id"], name: "index_items_on_genre_id"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2020_06_01_053611) do
     t.string "postcode"
     t.string "address"
     t.string "phone_number"
-    t.boolean "is_valid"
+    t.boolean "is_valid", default: true, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

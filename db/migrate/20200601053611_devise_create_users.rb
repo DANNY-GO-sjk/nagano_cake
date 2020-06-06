@@ -41,7 +41,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :postcode
       t.string :address
       t.string :phone_number
-      t.boolean :is_valid
+      t.boolean :is_valid,null: false, default: true
     end
 
     add_index :users, :email,                unique: true

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resource :users, only: :show
   get 'users/edit_withdraw' => 'users#edit_withdraw', as: 'edit_user_withdraw'
-  put 'users' => 'users#withdraw', as: 'user_withdraw'
+  put 'users/withdraw' => 'users#withdraw', as: 'user_withdraw'
 
   resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
 

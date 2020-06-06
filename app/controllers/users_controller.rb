@@ -18,6 +18,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_withdraw
+    @user = current_user
+  end
+
+  def withdraw
+    @user = User.find(current_user.id)
+    @user.update(is_valid: false) #会員ステータスの退会を有効にする
+    reset_session #情報をリセットする
+    redirect_to home_path
+  end
+
+
   private
 
   def user_params

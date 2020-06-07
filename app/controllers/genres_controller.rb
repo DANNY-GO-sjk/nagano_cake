@@ -1,10 +1,9 @@
 class GenresController < ApplicationController
-  def index
+  def search
+    # is_validがマッチするレコードを全て取得
     @genres = Genre.where(is_valid: true)
-    # ジャンルステータスが有効なものだけ表示
-    if params[:genre_id]
-      @genre = Genre.find(params[:genre_id])
-      @items =Item.where(genre_id: params[:genre_id]).page(params[:page])
-    end
+    @genre = Genre.find(params[:id])
+    @items = @genre.items.all.page(params[:page]).per(8)
+    render 'items/index'
   end
 end

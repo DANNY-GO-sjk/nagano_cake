@@ -1,11 +1,7 @@
 <h1>商品詳細</h1>
-<div class="genre">
-  <h4 class="genre-search">ジャンル検索</h4>
-  <% @genres.each do |genre| %>
-    <p><%= link_to genre.name %></p>
-  <% end %>
-</div>
-
+<table class="table table-bordered">
+ <%= render 'genres/serch', genres: @genres %>
+</table>
 <div class="item-box">
   <div class="item-image">
     <%= attachment_image_tag @item, :image, :fill, 500, 350, fallback: "no_image.jpg", size: "300x200" %>
@@ -15,5 +11,15 @@
   <p>¥<%= @item.tax_included_price(@item.price) %>(税込)</p>
 </div>
 <!-- 個数選択未実装 -->
+<%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
 
-<%= button_to 'カートに入れる', cart_items_path(item_id: @item), class: 'btn btn-primary' %>
+  <%= f.select :how_many, options_for_select(1..10), include_blank: "個数選択" %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <%= f.hidden_field :item_id, value: @item.id %>
+
+  <%= button_to 'カートに入れる', cart_items_path(item_id: @item), class: 'btn btn-primary' %>
+
+
+<% end %>

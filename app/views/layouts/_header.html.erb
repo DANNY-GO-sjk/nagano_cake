@@ -8,10 +8,10 @@
       <nav>
         <ul class='nav navbar-nav navbar-right'>
           <% if user_signed_in? %>
-            <span>ようこそ<%#= "#{current_user.family_name} #{current_user.first_name}" %>さん!!</span>
+            <span>ようこそ<%= "#{current_user.family_name} #{current_user.first_name}" %>さん!!</span>
 
             <li>
-              <%= link_to "マイページ", users_path(current_user), class: "btn-sm" %>
+              <%= link_to "マイページ", users_path, class: "btn-sm" %>
             </li>
             <li>
               <%= link_to "商品一覧", items_path, class: "btn-sm btn-success" %>

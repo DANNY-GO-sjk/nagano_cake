@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :order_params, only: [:create, :confirm]
+  before_action :shipping_address_params, only: [:confirm]
 
   def index
     @orders = current_user.orders
@@ -7,6 +8,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @shipping_address = ShippingAddress.new
   end
 
   def create
@@ -33,6 +35,7 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @shipping_address = ShippingAddress.new(shipping_address_params)
     if @order.has_shipping_address?
     else
       render :new
@@ -50,7 +53,21 @@ class OrdersController < ApplicationController
       :payment_method,
       :postcode,
       :address,
-      :receiver
+      :receiver,
+      :shipping_address[
+        :postcode,
+        :address,
+        :receiver
+      ]
     )
+  end
+
+  def shipping_address_params
+    params.require(:shipping_address).permit([
+      :id,
+      :postcode,
+      :address,
+      :receiver,
+    ])
   end
 end

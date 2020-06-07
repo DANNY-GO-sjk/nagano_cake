@@ -21,4 +21,9 @@ class User < ApplicationRecord
   validates :phone_number, presence: true
   validates :is_valid, presence: true
 
+
+# ログイン時に退会済みのユーザーが入れなくする
+  def active_for_authentication?
+    super && (self.is_valid == true)
+  end
 end

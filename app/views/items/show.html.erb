@@ -10,6 +10,7 @@
   <p><%= @item.explanation %></p><br>
   <p>¥<%= @item.tax_included_price(@item.price) %>(税込)</p>
 </div>
+
 <!-- 個数選択未実装 -->
 <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
   <%= f.select :how_many, options_for_select(1..10), include_blank: "個数選択" %>

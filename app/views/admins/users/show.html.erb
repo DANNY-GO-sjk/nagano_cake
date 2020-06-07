@@ -1,0 +1,35 @@
+<h3><%= "#{@user.family_name} #{@user.first_name}" %>さんの会員詳細</h3>
+<div>
+  <div class="row">
+    <span class="col-xs-3">顧客ID</span>
+    <span class="col-xs-3"><%= @user.id %></span>
+    <span class="col-xs-3"><%= "#{@user.is_valid}会員" %></span>
+  </div>
+  <div class="row">
+    <span class="col-xs-3">氏名</span>
+    <span class="col-xs-3"><%= "#{@user.family_name} #{@user.first_name}" %></span>
+  </div>
+  <div class="row">
+    <span class="col-xs-3">フリガナ</span>
+    <span class="col-xs-3"><%= "#{@user.family_name_yomi} #{@user.first_name_yomi}" %></span>
+  </div>
+  <div class="row">
+    <span class="col-xs-3">郵便番号</span>
+    <span class="col-xs-3"><%= @user.postcode %></span>
+  </div>
+  <div class="row">
+    <span class="col-xs-3">住所</span>
+    <span class="col-xs-3"><%= @user.address %></span>
+  </div>
+  <div class="row">
+    <span class="col-xs-3">電話番号</span>
+    <span class="col-xs-3"><%= @user.phone_number %></span>
+  </div>
+  <div class="row">
+    <span class="col-xs-3">メールアドレス</span>
+    <span class="col-xs-3"><%= @user.email %></span>
+  </div>
+</div>
+
+<%= link_to "編集する", edit_admins_user_path(@user)  %>
+<%= link_to "注文履歴一覧を見る", admins_orders_path %>

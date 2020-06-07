@@ -4,20 +4,32 @@ class Admins::UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    # @user = current_user
+      @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(current_user.id)
+    @user = @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to users_path(@user)
+      redirect_to admins_user_path(@user)
     else
       render 'edit'
     end
+  end
+
+  def edit_withdraw
+    @user = @user = User.find(params[:id])
+  end
+
+  def withdraw
+    @user = @user = User.find(params[:id])
+    @user.update(is_valid: true) # 会員ステータスの退会を有効にする
+    @end_user.destroy
+    redirect_to root_path
   end
 
   private

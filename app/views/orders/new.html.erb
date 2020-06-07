@@ -8,32 +8,11 @@
   <%= f.label :payment_method_銀行振込, '銀行振込' %>
 
   <h3>お届け先</h3>
-    <div>
-      <%= radio_button_tag :select_shipping_address, :my_address, checked: "checked" %>
-      <%= label_tag :select_shipping_address_my_address, 'ご自身の住所' %>
-      <div>
-        <%= "#{current_user.postcode} #{current_user.address}" %>
-      </div>
-      <div>
-        <%= "#{current_user.family_name} #{current_user.first_name}" %>
-      </div>
-    </div>
-    <div>
-      <%= radio_button_tag :select_shipping_address, :registered_address %>
-      <%= label_tag :select_shipping_address_registered_address, '登録済み住所から選択' %>
-      <%= collection_select :shipping_address, :id, current_user.shipping_addresses, :id, :full_text %>
-    </div>
-    <div>
-      <%= radio_button_tag :select_shipping_address, :new_address %>
-      <%= f.fields_for @shipping_address do |i| %>
-        <%= i.label :select_shipping_address_new_address, '新しいお届け先' %>
-        <%= i.label :postcode, '郵便番号' %>
-        <%= i.text_field :postcode %>
-        <%= i.label :address, '住所' %>
-        <%= i.text_field :address %>
-        <%= i.label :receiver, '宛名' %>
-        <%= i.text_field :receiver %>
-      <% end %>
-    </div>
+  <%= f.label :postcode, '郵便番号' %>
+  <%= f.text_field :postcode %>
+  <%= f.label :address, '住所' %>
+  <%= f.text_field :address %>
+  <%= f.label :receiver, '宛名' %>
+  <%= f.text_field :receiver %>
   <%= f.submit "確認画面へ進む" %>
 <% end %>

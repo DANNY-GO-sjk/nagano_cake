@@ -25,12 +25,4 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (is_valid == '有効')
   end
-
-  def shipping_address
-    {
-      postcode: postcode,
-      address: address,
-      receiver: "#{family_name} #{first_name}",
-    }
-  end
 end

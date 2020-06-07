@@ -3,16 +3,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def edit
-    @user = User.find(current_user.id)
-    # 本当はdeviseのビューで行う機能は後で行う
-    # deviseコントローラーを使用
-  end
-
   def update
-    @user = User.find(current_user.id)
-    if @user.update(user_params)
-      redirect_to users_path(@user)
+    user = current_user
+    if user.update(user_params)
+      redirect_to users_path(user)
     else
       render 'edit'
     end
@@ -23,12 +17,11 @@ class UsersController < ApplicationController
   end
 
   def withdraw
-    @user = User.find(current_user.id)
-    @user.update(is_valid: false) #会員ステータスの退会を有効にする
-    reset_session #情報をリセットする
+    user = current_user
+    user.update(is_valid: "無効")
+    reset_session # 情報をリセットする
     redirect_to home_path
   end
-
 
   private
 

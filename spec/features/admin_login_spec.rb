@@ -117,9 +117,11 @@ RSpec.describe "マスタ登録", type: :feature do
       end
 
       context '商品一覧画面' do
-        example '商品一覧画面を表示する' do
-          expect(page).to have_content '商品一覧'
+        before do
           @item1 = create(:item)
+        end
+
+        example '登録した商品が表示されている' do
           # 商品一覧画面を開く
           visit admins_items_path
           # 商品一覧画面表示に成功したことを検証する
@@ -127,7 +129,6 @@ RSpec.describe "マスタ登録", type: :feature do
         end
 
         example '新規登録ボタンを押下する(2商品目)=>商品新規登録画面が表示される' do
-          @item1 = create(:item)
           @item2 = build(:item)
           @genre = create(:genre)
           # 商品新規登録画面を開く
@@ -145,7 +146,7 @@ RSpec.describe "マスタ登録", type: :feature do
           attach_file 'item_image', "#{Rails.root}/spec/factories/rails.png"
           # 新規登録ボタンをクリックする
           click_button '新規登録'
-          # 詳細画面遷移に成功したことを検証する
+          # 商品新規登録画面表示に成功したことを検証する
           expect(page).to have_content @item2.name
           # 商品が2つになっていることを検証する
           expect(Item.count).to eq(2)

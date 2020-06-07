@@ -1,6 +1,6 @@
 <h1>商品詳細</h1>
 <table class="table table-bordered">
- <%= render 'genres/serch', genres: @genres %>
+  <%= render 'genres/serch', genres: @genres %>
 </table>
 <div class="item-box">
   <div class="item-image">
@@ -10,16 +10,9 @@
   <p><%= @item.explanation %></p><br>
   <p>¥<%= @item.tax_included_price(@item.price) %>(税込)</p>
 </div>
-<!-- 個数選択未実装 -->
 <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
-
   <%= f.select :how_many, options_for_select(1..10), include_blank: "個数選択" %>
-
   <%= f.hidden_field :user_id, value: current_user.id %>
-
   <%= f.hidden_field :item_id, value: @item.id %>
-
-  <%= button_to 'カートに入れる', cart_items_path(item_id: @item), class: 'btn btn-primary' %>
-
-
+  <%= f.submit 'カートに入れる', class: 'btn btn-primary' %>
 <% end %>

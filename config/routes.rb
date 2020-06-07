@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admins, skip: :all
   devise_scope :admin do
     get 'admins/sign_in' => 'admins/sessions#new', as: 'new_admin_session'
@@ -24,6 +25,10 @@ Rails.application.routes.draw do
   post 'orders/back' => 'orders#back', as: 'order_back'
 
   resources :items, only: [:index, :show]
+
+  resources :genres, only: [:index] do
+    get 'items' => 'genres#index'
+  end
 
   namespace :admins do
     resources :items, except: :destroy

@@ -6,7 +6,7 @@
 		<table class="table">
 				<tr>
 					<th>購入者</th>
-					<td><%= @order.user.family_name %><%= o.user.first_name %></td>
+					<td><%= @order.user.family_name %><%= @order.user.first_name %></td>
 				</tr>
 				<tr>
 					<th>配送先</th>
@@ -17,8 +17,8 @@
 					<td><%= @order.payment_method %></td>
 				</tr>
 				<tr>
-					<% form_for(@order, url:"/admins/orders/#{@order.id}" do |f| %>
-					<%= f.label :progress, '注文ステータス' %>>
+					<%= form_for(@order, url:"/admins/orders/#{@order.id}") do |f| %>
+					<%= f.label :progress, '注文ステータス' %>
 					<td><%= f.select :progress, Order.progresses.keys.map {|k| [k,k]}, {} %>
 					<span><%= f.submit '更新', class: "btn btn-default" %><span></td>
 					<% end %>
@@ -38,13 +38,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%= @order.order_items each do |order_items| %>
+				<%= @order.order_items.each do |order_item| %>
 				<tr>
 					<td><%= order_item.item.name %></td>
 					<td><%= order_item.price %></td>
           <td><%= order_item.how_many %></td>
           <td><%= order_item.price * order_item.how_many %></td>
-          <%= form_fot(order_item, url:"/admins/order_items/#{@order_item.id}" do |f| %>
+          <%= form_for(order_item, url:"/admins/order_items/#{@order_item.id}") do |f| %>
           <td><%= f.select :progress, Order_item.progresses.keys.map {|k| [k,k]}, {} %></td>
           <td><%= f.submit '更新', class: "btn btn-default" %></td>
           <% end %>

@@ -1,7 +1,7 @@
 <h1>商品一覧</h1>
 <p>(全<%= @items.count %>件)</p>
 <table class="table table-bordered">
- <%= render 'genres/serch', genres: @genres %>
+ <%= render 'genres/search', genres: @genres %>
 </table>
 
   <% @items.each do |item| %>

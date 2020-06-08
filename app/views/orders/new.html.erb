@@ -10,6 +10,7 @@
 
 
   <h3>お届け先</h3>
+
   <%= radio_button_tag(:s_address, "r1") %>
   <%= label_tag(:s_address_r1, "ご自身の住所") %>
     <%= current_user.postcode, current_user.address, (current_user.family_name + current_user.first_name) %>
@@ -26,6 +27,6 @@
     <%= f.label :r3_receiver, '宛名' %>
     <%= f.text_field :r3_receiver %>
 
+
   <%= f.submit "確認画面へ進む" %>
 <% end %>
-

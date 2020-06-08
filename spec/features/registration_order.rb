@@ -5,7 +5,7 @@ RSpec.describe "登録〜注文", type: :feature do
     # ユーザーを作成する
     @user1 = build(:user)
     # 商品を作成する
-    @item1 = create(:item)
+    @item = create(:item)
     # @item2 = create(:item)
     # ジャンルを作成する
     @genre = create(:genre)
@@ -23,7 +23,7 @@ RSpec.describe "登録〜注文", type: :feature do
   end
 
   context '新規登録画面' do
-    example '必要事項を入力して登録ボタンを押下する=>トップ画面に遷移する・ヘッダがログイン後の表示に変わっている' do
+    example '必要事項を入力して登録ボタンを押下する=>トップ画面に遷移する/ヘッダがログイン後の表示に変わっている' do
       # 新規登録画面を開く
       visit new_user_registration_path
       # 必要事項を入力して
@@ -35,15 +35,109 @@ RSpec.describe "登録〜注文", type: :feature do
       fill_in 'user_address', with: @user1.address
       fill_in 'user_phone_number', with: @user1.phone_number
       fill_in 'user_email', with: @user1.email
-      fill_in 'user_password', with: 'testtest'
-      fill_in 'user_password_confirmation', with: 'testtest'
+      fill_in 'user_password', with: @user1.password
+      fill_in 'user_password_confirmation', with: @user1.password_confirmation
       # 登録ボタンを押下する
       click_button '新規会員登録' # FIXME:本当は"新規登録"
       # トップ画面に遷移する
-      expect(page).to have_content 'ようこそ'
+      expect(page).to have_content 'おすすめ商品' # FIXME: ◯オススメ
       # ヘッダがログイン後の表示に変わっている
       expect(page).to have_content 'ログアウト'
       expect(User.count).to eq(1)
+    end
+  end
+
+  context 'ログイン後' do
+    before do
+      @user1 = create(:user)
+      # ログイン画面を開く
+      visit new_user_session_path
+      # 必要事項を入力して
+      fill_in 'user_email', with: @user1.email
+      fill_in 'user_password', with: @user1.password
+      # 登録ボタンを押下する
+      click_button 'ログイン'
+    end
+
+    context 'トップ画面' do
+      example '任意の商品画像を押下する=>該当商品の詳細画面に遷移する/商品情報が正しく表示されている' do
+        # トップ画面を開く
+        visit home_path
+        # FIXME: 商品画像をクリック
+        find(".item.image").click
+        # 該当商品の詳細画面に遷移する
+        expect(page).to have_content '商品詳細'
+        # 商品情報が正しく表示されている
+        expect(page).to have_content @item.name
+      end
+    end
+
+    context '商品詳細画面' do
+      example '個数を選択し、カートに入れるボタンを押下する=>カート画面に遷移する/カートの中身が正しく表示されている' do
+        # 商品詳細画面を開く
+        visit item_path(@item)
+        # 個数を選択し
+        select 5, from: 'cart_item_how_many'
+        # カートに入れるボタンを押下する
+        click_button 'カートに入れる'
+
+        # カート画面に遷移する
+        expect(page).to have_content 'ショッピングカート'
+        # カートの中身が正しく表示されている
+        expect(page).to have_content @item.name
+        expect(page).to have_content @item.tax_included_price(@item.price)
+        expect(page).to have_content 5
+        expect(page).to have_content @item.tax_included_price(@item.price) * 5
+      end
+    end
+
+    context 'カート画面' do
+      before do
+        @cart_item1 = create(:cart_item)
+        @cart_item2 = create(:cart_item)
+        @cart_item1.update(user_id: @user1.id)
+        @cart_item2.update(user_id: @user1.id)
+        # カート画面を開く
+        visit cart_items_path
+      end
+
+      example '買い物を続けるボタンを押下する=>トップ画面に遷移する' do
+        # 買い物を続けるボタンを押下
+        click_on '買い物を続ける'
+        # トップ画面に遷移する
+        expect(page).to have_content 'おすすめ商品' # FIXME: ◯オススメ
+      end
+
+      example '商品の個数を変更し、更新ボタンを押下する=>小計表示が正しく更新される' do
+        expect do
+          rnd = rand(10) + 1
+          # 商品の個数を変更し
+          find(".cart_item_#{@cart_item1.id}_number").set(rnd)
+          # 更新ボタンを押下する
+          find(".cart_item_#{@cart_item1.id}_submit").click
+          # 小計表示が正しく更新される FIXME:ホントは合計
+          expect(@cart_item1.how_many).to eq(rnd)
+          expect(page).to have_content @cart_item1.subtotal_price
+        end
+      end
+    end
+
+    context '注文情報入力画面' do
+      before do
+        @cart_item1 = create(:cart_item)
+        @cart_item2 = create(:cart_item)
+        @cart_item1.update(user_id: @user1.id)
+        @cart_item2.update(user_id: @user1.id)
+        # 注文情報入力画面に遷移する
+        visit new_order_path
+      end
+
+      example '支払方法を選択する/登録済みの自分の住所を選択する/次に進むボタンを押下する=>注文確認画面に遷移する' do
+        # 支払方法を選択する
+        choose '銀行振込'
+        # 登録済みの自分の住所を選択する
+        choose 'ご自身の住所'
+      end
     end
   end
 end

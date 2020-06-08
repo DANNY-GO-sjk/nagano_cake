@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     post 'admins/sign_in' => 'admins/sessions#create', as: 'admin_session'
     delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
   end
-  devise_for :users
+  devise_for :users, :controllers => {
+    :sessions => 'users/sessions',
+  }
   patch 'users/edit', to: 'users#update'
 
   get 'home' => 'home#index', as: 'home'
@@ -24,6 +26,8 @@ Rails.application.routes.draw do
   post 'orders/back' => 'orders#back', as: 'order_back'
 
   resources :items, only: [:index, :show]
+
+  get 'genre/:id' => 'genres#search', as: 'genres_search'
 
   namespace :admins do
     resources :items, except: :destroy

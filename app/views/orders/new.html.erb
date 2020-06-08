@@ -13,10 +13,10 @@
 
   <%= radio_button_tag(:s_address, "r1") %>
   <%= label_tag(:s_address_r1, "ご自身の住所") %>
-    <%= current_user.postcode, current_user.address, (current_user.family_name + current_user.first_name) %>
+    <%= current_user.postcode %><%= current_user.address %><%= current_user.family_name %><%= current_user.first_name %>
   <%= radio_button_tag(:s_address, "r2") %>
   <%= label_tag(:s_address_r2, "登録済み住所から選択") %>
-    <%= collection_select :r2_address, ShippingAddress.where(user_id: current_user.id), :id, (:postcode, :address, :receiver) %>
+    <%= f.collection_select :r2_address, ShippingAddress.where(user_id: current_user.id), :id, :address %>
   <!-- 新しいお届け先 -->
   <%= radio_button_tag(:s_address, "radio3") %>
   <%= label_tag(:s_address_r3, "新しいお届け先") %>

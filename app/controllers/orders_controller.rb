@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
         @address = current_user.address
         @receiver = (current_user.family_name + current_user.first_name)
       elsif params[:s_address] == "r2"
-        s_address = ShippingAddress.find(params[:r2_address])
+        s_address = ShippingAddress.find(:r2_address)
         @postcode = s_address.postcode
         @address = s_address.address
         @receiver = s_address.receiver

@@ -16,6 +16,25 @@
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
 
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .body {
   margin-top: 70px;
 }
+
+
+/*新規登録 */
+.user-signup_form {
+  width: 150px;
+  margin: 20px auto;
+}
+
+.user-signup{
+  width: 100%;
+}
+

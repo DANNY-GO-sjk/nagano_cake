@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
-  has_many :items
+  # has_many :key => "value", #なんの機能実装に必要？
   has_many :order_items, dependent: :destroy
 
   validates :progress, presence: true
@@ -20,5 +20,13 @@ class Order < ApplicationRecord
     return false if address.blank?
     return false if receiver.blank?
     true
+  end
+
+  def how_many
+    how_many = 0
+    self.order_items.each do |order_item|
+      how_many += order_item.how_many
+    end
+    how_many
   end
 end

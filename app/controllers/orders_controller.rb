@@ -33,13 +33,28 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    if @order.has_shipping_address?
+    if request.post?
+      if params[:s_address] == "r1"
+        @postcode = current_user.postcode
+        @address = current_user.address
+        @receiver = (current_user.family_name + current_user.first_name)
+      elsif params[:s_address] == "r2"
+        s_address = ShippingAddress.find(:r2_address)
+        @postcode = s_address.postcode
+        @address = s_address.address
+        @receiver = s_address.receiver
+      else
+        @postcode = r3_postcode
+        @address = r3_address
+        @receiver = r3_receiver
+      end
     else
       render :new
     end
   end
 
   def back
+
   end
 
   private

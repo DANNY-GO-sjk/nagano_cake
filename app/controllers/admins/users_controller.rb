@@ -27,7 +27,7 @@ class Admins::UsersController < ApplicationController
 
   def withdraw
     @user = @user = User.find(params[:id])
-    @user.update(is_valid: true) # 会員ステータスの退会を有効にする
+    @user.update(is_valid: true) # 会員ステータスの退会を有効にする退会済み
     @end_user.destroy
     redirect_to root_path
   end

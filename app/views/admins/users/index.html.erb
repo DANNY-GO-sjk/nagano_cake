@@ -19,13 +19,13 @@
 							<%= user.id %>
 						</td>
 						<td>
-							<%= "#{user.family_name} #{user.first_name}" %>
+							<%= link_to "#{user.family_name} #{user.first_name}", admins_user_path(user) %>
 						</td>
 						<td>
 							<%= user.email %>
 						</td>
 						<td>
-							<%= "#{user.is_valid}ステータス未実装" %>
+							<%= "#{user.is_valid}" %>
 						</td>
 					</tr>
 				<% end %>

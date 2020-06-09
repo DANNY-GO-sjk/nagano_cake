@@ -21,6 +21,4 @@ class Order < ApplicationRecord
     return false if receiver.blank?
     true
   end
-
-
 end

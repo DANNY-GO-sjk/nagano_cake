@@ -12,7 +12,10 @@ Rails.application.routes.draw do
 
   get 'home' => 'home#index', as: 'home'
 
-  resource :users, only: :show
+  get 'about' => 'home#about', as: 'about'
+
+  resource :users, only: [:show ,:edit]
+  get 'users/edit_info' => 'users#edit_info'
   get 'users/edit_withdraw' => 'users#edit_withdraw', as: 'edit_user_withdraw'
   put 'users/withdraw' => 'users#withdraw', as: 'user_withdraw'
 

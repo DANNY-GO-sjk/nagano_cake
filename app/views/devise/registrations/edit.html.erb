@@ -1,52 +1,41 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h2>登録情報編集</h2>
-      <%= form_for @user, url: {action: "edit"} do |f| %>
-        <table class='edit_table'>
-          <tr>
-            <td><%= f.label '(姓)' %></td>
-            <td> <%= f.text_field :family_name, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label '(名)' %></td>
-            <td><%= f.text_field :first_name, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label '(セイ)' %></td>
-            <td><%= f.text_field :family_name_yomi, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label '(メイ)' %></td>
-            <td><%= f.text_field :first_name_yomi, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label '郵便番号(ハイフンなし)' %></td>
-            <td><%= f.text_field :postcode, class: "form-control"%></td>
-          </tr>
-          <tr>
-            <td><%= f.label '住所' %></td>
-            <td><%= f.text_field :address, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label '電話番号(ハイフンなし)' %></td>
-            <td><%= f.text_field :phone_number, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td>
-              <div class='action'>
-                <%= f.submit "編集内容を保存する",class: "btn-sm btn-success" %>
-              </div>
-            </td>
-            <td>
-              <div class='withdraw'>
-                 <%= link_to '退会する', edit_user_withdraw_path, class: "btn-sm btn-success" %>
-              </div>
-            </td>
-          </tr>
-        </table>
-        <% end %>
-      </div>
-  </div>
-</div>
+<h2>パスワード編集</h2>
 
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :新しいパスワード %> <i>(変更したくない場合は空白のままにしてください)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> 文字以上</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワード確認 %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :現在のパスワード %> <i>(変更を確認するには現在のパスワードが必要です)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>
+
+
+
+<%= link_to "前のページへ→", users_path %>

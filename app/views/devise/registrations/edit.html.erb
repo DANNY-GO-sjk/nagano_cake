@@ -1,37 +1,48 @@
-<h2>登録情報編集</h2>
-<%= form_for @user, url: {action: "edit"} do |f| %>
-  <div class='field'>
-    <%= f.label '(姓)' %>
-    <%= f.text_field :family_name, class: 'family_name' %>
+<h2>パスワード編集</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-  <div class='field'>
-    <%= f.label '(名)' %>
-    <%= f.text_field :first_name, class: 'first_name' %>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :新しいパスワード %> <i>(変更したくない場合は空白のままにしてください)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> 文字以上</em>
+    <% end %>
   </div>
-  <div class='field'>
-    <%= f.label '(セイ)' %>
-    <%= f.text_field :family_name_yomi, class: 'family_name_yomi' %>
+
+  <div class="field">
+    <%= f.label :パスワード確認 %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-  <div class='field'>
-    <%= f.label '(メイ)' %>
-    <%= f.text_field :first_name_yomi, class: 'first_name_yomi' %>
-  </div>
-  <div class='field'>
-    <%= f.label '郵便番号(ハイフンなし)' %>
-    <%= f.text_field :postcode, class: 'postcode' %>
-  </div>
-  <div class='field'>
-    <%= f.label '住所' %>
-    <%= f.text_field :address, class: 'address' %>
-  </div>
-  <div class='field'>
-    <%= f.label '電話番号(ハイフンなし)' %>
-    <%= f.text_field :phone_number, class: 'phone_number' %>
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<%= link_to '退会する', edit_user_withdraw_path, class: "btn-sm btn-success" %>
+=======
+>>>>>>> 8af3b87d90e961897ff3b451e78d21e7f07be2c3
+=======
+  <div class="field">
+    <%= f.label :現在のパスワード %> <i>(変更を確認するには現在のパスワードが必要です)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "編集内容を保存する" %>
+    <%= f.submit "更新する" %>
   </div>
 <% end %>
 
-<%= link_to '退会する', edit_user_withdraw_path, class: "btn-sm btn-success" %>
+
+
+<%= link_to "前のページへ→", users_path %>
+>>>>>>> 1e79d8a12bda90186fcf0d194d41549f2f350d8e

@@ -31,12 +31,8 @@ class Users::SessionsController < Devise::SessionsController
   def reject_user
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
-<<<<<<< HEAD
-      if @user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false)
-=======
       if @user.valid_password?(params[:user][:password]) &&
-       (@user.active_for_authentication? == false)
->>>>>>> cbb09bc25462ce6cc41e9ecb1f9363048081e603
+        (@user.active_for_authentication? == false)
         flash[:error] = "退会済みです。"
         redirect_to new_user_session_path
       end

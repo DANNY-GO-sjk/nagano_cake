@@ -9,12 +9,12 @@
           <tr>
             <div class='form-group row'>
               <div class='field'>
-                <td><%= f.label '名前(姓・名)' %></td></br>
+                <td><%= f.label '名前(姓・名)' %></td><br>
                 <td><div class='col-md-6'>
                   <%= f.text_field :family_name, autofocus: true, autocomplete: "family_name",class:"form-control" %>
                     </div>
                     <div class='col-md-6'>
-                       <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",class:"form-control form-inline"%>
+                        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name",class:"form-control form-inline"%>
                     </div>
                 </td>
               </div>
@@ -29,7 +29,7 @@
                     <%= f.text_field :family_name_yomi, autofocus: true, autocomplete: "family_name_yomi",class:"form-control" %>
                       </div>
                       <div class='col-md-6'>
-                       <%= f.text_field :first_name_yomi, autofocus: true, autocomplete: "first_name",class:"form-control form-inline"%>
+                        <%= f.text_field :first_name_yomi, autofocus: true, autocomplete: "first_name",class:"form-control form-inline"%>
                     </div>
                   </td>
               </div>
@@ -94,7 +94,7 @@
 
         <div class='finish-sign_up'>
           <h2>既に登録済みの方</h2>
-              <sapn><%= render "devise/shared/links" %></sapn>
+              <span><%= render "devise/shared/links" %></span>
         </div>
       </div>
     </div>

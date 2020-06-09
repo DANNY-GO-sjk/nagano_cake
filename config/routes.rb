@@ -7,10 +7,7 @@ Rails.application.routes.draw do
   end
   devise_for :users, :controllers => {
     :sessions => 'users/sessions',
-<<<<<<< HEAD
-=======
     :registrations => 'users/registrations',
->>>>>>> cbb09bc25462ce6cc41e9ecb1f9363048081e603
   }
   patch 'users/edit', to: 'users#update'
 

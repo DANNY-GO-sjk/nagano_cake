@@ -11,28 +11,21 @@
 					<th>注文個数</th>
 					<th>注文ステータス</th>
 				</tr>
-				<tr>
-					<th>注文機能未実装の為注文履歴表示されません</th><!--あとでこの行削除-->
-				</tr>
 			</thead>
 			<tbody>
-				<% @orders.each do |orders| %>
+				<% @orders.each do |order| %>
 					<tr>
 						<td>
-							<%= orders.crated_at %> 
-							<!--注文機能未実装の為viwに表示されません-->
+							<%= link_to "#{order.created_at}", admins_order_path(order.id), method: :get %>
 						</td>
 						<td>
-							<%= "#{orders.user.family_name} #{orders.user.first_name}" %>
-							<!--注文機能未実装の為viwに表示されません-->
+							<%= "#{order.user.family_name} #{order.user.first_name}" %>
 						</td>
 						<td>
-							<%= orders.order_items.how_meny %>
-							<!--注文機能未実装の為viwに表示されません-->
+							<%= order.how_many %>
 						</td>
 						<td>
-							<%= orders.progress %>
-							<!--注文機能未実装の為viwに表示されません-->
+							<%= order.progress %>
 						</td>
 					</tr>
 				<% end %>

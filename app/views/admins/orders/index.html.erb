@@ -16,20 +16,17 @@
 				<% @orders.each do |order| %>
 					<tr>
 						<td>
-							<%= link_to order.created_at, admins_order_path(order.id) %>
-							<!--注文機能未実装の為viwに表示されません-->
+
+							<%= link_to "#{order.created_at}", admins_order_path(order.id), method: :get %>
 						</td>
 						<td>
-							<%= order.user.family_name %><%= order.user.first_name %>
-							<!--注文機能未実装の為viwに表示されません-->
+							<%= "#{order.user.family_name} #{order.user.first_name}" %>
 						</td>
 						<td>
-							数量
-							<!--注文機能未実装の為viwに表示されません-->
+							<%= order.how_many %>
 						</td>
 						<td>
 							<%= order.progress %>
-							<!--注文機能未実装の為viwに表示されません-->
 						</td>
 					</tr>
 				<% end %>

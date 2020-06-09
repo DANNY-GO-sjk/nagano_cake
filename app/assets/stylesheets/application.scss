@@ -16,6 +16,42 @@
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
 
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .body {
   margin-top: 70px;
+  height: 1000px;
+}
+
+header{
+  background-color:black;
+  .navbar-left{
+    span{
+      font-size:40px;
+      padding-top:10px;
+      color:#fff;
+    }
+  }
+  .navbar-right{
+    li{
+      margin: 5px 5px 5px 10px;
+    }
+    span{
+      color:#fff;
+    }
+  }
+}
+
+footer{
+  height: 60px;
+  background-color:gray;
+  padding:50px 0;
+}
+.text-center{
+  color: #fff;
 }

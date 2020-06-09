@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
         )
         cart_item.destroy
       end
-      redirect_to home_path # FIX: 本当はサンクスページ
+      render :complete
     else
     end
   end
@@ -37,16 +37,16 @@ class OrdersController < ApplicationController
       if params[:s_address] == "r1"
         @postcode = current_user.postcode
         @address = current_user.address
-        @receiver = (current_user.family_name + current_user.first_name)
+        @receiver = current_user.family_name + current_user.first_name
       elsif params[:s_address] == "r2"
-        s_address = ShippingAddress.find(:r2_address)
-        @postcode = s_address.postcode
-        @address = s_address.address
-        @receiver = s_address.receiver
+        adr = ShippingAddress.find(params[:order][:r2_address])
+        @postcode = adr.postcode
+        @address = adr.address
+        @receiver = adr.receiver
       else
-        @postcode = r3_postcode
-        @address = r3_address
-        @receiver = r3_receiver
+        @postcode = params[:order][:r3_postcode]
+        @address = params[:order][:r3_address]
+        @receiver = params[:order][:r3_receiver]
       end
     else
       render :new

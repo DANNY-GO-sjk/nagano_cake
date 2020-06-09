@@ -57,13 +57,12 @@
 
 <%= form_with model: @order, local: true do |f| %>
   <%= f.hidden_field :payment_method %>
-  <%= f.hidden_field :postcode %>
-  <%= f.hidden_field :address %>
-  <%= f.hidden_field :receiver %>
+  <%= f.hidden_field :postcode, :value => @postcode %>
+  <%= f.hidden_field :address, :value => @address %>
+  <%= f.hidden_field :receiver, :value => @receiver %>
   <%= f.hidden_field :total_price, value: total_price %>
     <div class="row actions">
     <%= f.submit "購入を確定する" %>
   </div>
-
 <% end %>
 

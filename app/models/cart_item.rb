@@ -11,4 +11,6 @@ class CartItem < ApplicationRecord
   def subtotal_price
     unit_price * how_many
   end
+
+
 end

@@ -25,19 +25,15 @@
       <th></th>
     </tr>
     <% @shipping_addresses.each do |shipping_address| %>
-      <tr>
-        <td><%=shipping_address.postcode %></td>
-        <td><%=shipping_address.address %></td>
-        <td><%=shipping_address.receiver%></td>
+      <tr class=<%= "shipping_address-#{shipping_address.id}" %>>
+        <td class="postcode"><%=shipping_address.postcode %></td>
+        <td class="address"><%=shipping_address.address %></td>
+        <td class="receiver"><%=shipping_address.receiver%></td>
         <td>
-          <button type="button" class="btn btn-success btn-sm">
-            <%= link_to "編集する", edit_shipping_address_path(shipping_address.id)%>
-          </button>
+          <%= link_to "編集する", edit_shipping_address_path(shipping_address.id), class: "btn btn-success btn-sm edit"%>
         </td>
         <td>
-          <button type="button" class="btn btn-danger btn-sm">
-            <%= link_to "削除する", shipping_address_path(shipping_address.id), method: :delete %>
-          </button>
+          <%= link_to "削除する", shipping_address_path(shipping_address.id), method: :delete, class: "btn btn-danger btn-sm destroy" %>
         </td>
       </tr>
     <% end %>

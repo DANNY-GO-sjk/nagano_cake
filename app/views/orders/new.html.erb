@@ -20,7 +20,7 @@
   <%= label_tag(:s_address_r2, "登録済み住所から選択") %>
     <%= collection_select :shipping_address, :id, current_user.shipping_addresses, :id, :full_address %>
   <!-- 新しいお届け先 -->
-  <%= radio_button_tag(:s_address, "radio3") %>
+  <%= radio_button_tag(:s_address, "r3") %>
   <%= label_tag(:s_address_r3, "新しいお届け先") %>
     <%= label_tag :r3_postcode, '郵便番号' %>
     <%= text_field_tag :r3_postcode %>

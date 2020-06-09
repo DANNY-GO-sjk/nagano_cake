@@ -25,4 +25,8 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (is_valid == '有効')
   end
+
+  def full_name
+    "#{family_name} #{first_name}"
+  end
 end

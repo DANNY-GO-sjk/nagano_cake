@@ -3,6 +3,13 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+<<<<<<< HEAD
+=======
+  def edit_info
+    @user = current_user
+  end
+
+>>>>>>> cbb09bc25462ce6cc41e9ecb1f9363048081e603
   def update
     user = current_user
     if user.update(user_params)

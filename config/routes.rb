@@ -7,12 +7,19 @@ Rails.application.routes.draw do
   end
   devise_for :users, :controllers => {
     :sessions => 'users/sessions',
+<<<<<<< HEAD
+=======
+    :registrations => 'users/registrations',
+>>>>>>> cbb09bc25462ce6cc41e9ecb1f9363048081e603
   }
   patch 'users/edit', to: 'users#update'
 
   get 'home' => 'home#index', as: 'home'
 
-  resource :users, only: :show
+  get 'about' => 'home#about', as: 'about'
+
+  resource :users, only: [:show, :edit]
+  get 'users/edit_info' => 'users#edit_info'
   get 'users/edit_withdraw' => 'users#edit_withdraw', as: 'edit_user_withdraw'
   put 'users/withdraw' => 'users#withdraw', as: 'user_withdraw'
 

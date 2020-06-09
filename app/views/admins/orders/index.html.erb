@@ -16,6 +16,7 @@
 				<% @orders.each do |order| %>
 					<tr>
 						<td>
+
 							<%= link_to "#{order.created_at}", admins_order_path(order.id), method: :get %>
 						</td>
 						<td>

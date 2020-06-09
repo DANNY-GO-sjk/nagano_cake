@@ -5,9 +5,9 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    # FIX: 問答無用で商品の一番をカートに追加している
-    # 本当は 商品詳細画面からitem_id を受け取る。
-    current_user.cart_items.create(item_id: 1)
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.user_id = current_user.id
+    @cart_item.save
     redirect_to cart_items_path
   end
 
@@ -31,6 +31,6 @@ class CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:how_many)
+    params.require(:cart_item).permit(:item_id, :user_id, :how_many)
   end
 end

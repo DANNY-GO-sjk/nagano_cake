@@ -1,9 +1,13 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar naver-default navbar-fixed-top">
     <div class="container">
+      <div class= 'row'>
       <nav class='nav navbar-nav navbar-left' >
+        <%= link_to (home_path) do %>
           <span>LOGO</span>
+        <% end %>
       </nav>
 
+      <div class='col-xs-9'>
 
       <nav>
         <ul class='nav navbar-nav navbar-right'>
@@ -11,7 +15,10 @@
             <span>ようこそ<%#= "#{current_user.family_name} #{current_user.first_name}" %>さん!!</span>
 
             <li>
-              <%= link_to "マイページ", users_path(current_user), class: "btn-sm" %>
+              <%= link_to "マイページ", users_path, class: "btn-sm btn-success" %>
+            </li>
+            <li>
+              <%= link_to "アバウト", about_path, class: "btn-sm btn-success" %>
             </li>
             <li>
               <%= link_to "商品一覧", items_path, class: "btn-sm btn-success" %>
@@ -42,4 +49,6 @@
         </ul>
       </nav>
     </div>
+  </div>
+  </div>
 </header>

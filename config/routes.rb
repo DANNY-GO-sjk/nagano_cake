@@ -33,7 +33,6 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show]
 
   get 'genre/:id' => 'genres#search', as: 'genres_search'
-
   namespace :admins do
     resources :items, except: :destroy
     resources :genres, only: [:index, :create, :edit, :update]

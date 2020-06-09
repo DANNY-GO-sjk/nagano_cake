@@ -25,6 +25,35 @@
 
 .body {
   margin-top: 70px;
+  height: 1000px;
+}
+
+header{
+  background-color:black;
+  .navbar-left{
+    span{
+      font-size:40px;
+      padding-top:10px;
+      color:#fff;
+    }
+  }
+  .navbar-right{
+    li{
+      margin: 5px 5px 5px 10px;
+    }
+    span{
+      color:#fff;
+    }
+  }
+}
+
+footer{
+  height: 60px;
+  background-color:gray;
+  padding:50px 0;
+}
+.text-center{
+  color: #fff;
 }
 
 

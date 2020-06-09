@@ -82,7 +82,7 @@ RSpec.describe "マスタ登録", type: :feature do
           # 商品一覧画面を開く
           visit admins_items_path
           # 新規登録ボタンをクリックする
-          click_on '+' # FIXME: 本当はIDとかで管理したい
+          find(".item-new").click
           # 商品新規登録画面表示に成功したことを検証する
           expect(page).to have_content '商品新規登録'
 
@@ -120,7 +120,7 @@ RSpec.describe "マスタ登録", type: :feature do
           # 商品一覧画面を開く
           visit admins_items_path
           # 新規登録ボタンをクリックする
-          click_on '+' # FIXME: 本当はIDとかで管理したい
+          find(".item-new").click
           # 商品新規登録画面表示に成功したことを検証する
           expect(page).to have_content '商品新規登録'
 

@@ -38,9 +38,9 @@ RSpec.describe "登録〜注文", type: :feature do
       fill_in 'user_password', with: @user1.password
       fill_in 'user_password_confirmation', with: @user1.password_confirmation
       # 登録ボタンを押下する
-      click_button '新規会員登録' # FIXME:本当は"新規登録"
+      click_button '新規登録'
       # トップ画面に遷移する
-      expect(page).to have_content 'おすすめ商品' # FIXME: ◯オススメ
+      expect(page).to have_content 'オススメ商品'
       # ヘッダがログイン後の表示に変わっている
       expect(page).to have_content 'ログアウト'
       expect(User.count).to eq(1)
@@ -63,8 +63,8 @@ RSpec.describe "登録〜注文", type: :feature do
       example '4,5' do
         # トップ画面を開く
         visit home_path
-        # FIXME: 商品画像をクリック
-        find(".item.image").click
+        # 商品画像をクリック
+        find(".item-#{@item.id}-show").click
         # 該当商品の詳細画面に遷移する
         expect(page).to have_content '商品詳細'
         # 商品情報が正しく表示されている
@@ -80,7 +80,6 @@ RSpec.describe "登録〜注文", type: :feature do
         select 5, from: 'cart_item_how_many'
         # カートに入れるボタンを押下する
         click_button 'カートに入れる'
-
         # カート画面に遷移する
         expect(page).to have_content 'ショッピングカート'
         # カートの中身が正しく表示されている
@@ -100,7 +99,7 @@ RSpec.describe "登録〜注文", type: :feature do
         # トップ画面に遷移する
         expect(page).to have_content 'オススメ商品'
         # 任意の商品画像を押下する
-        find(".item_#{@item.id}_link").click
+        find(".item-#{@item.id}-show").click
         # 該当商品の詳細画面に遷移する
         expect(page).to have_content @item.name
         # 商品情報が正しく表示されている
@@ -130,26 +129,24 @@ RSpec.describe "登録〜注文", type: :feature do
     #     @cart_item.update(user_id: @user1.id)
     #   end
 
-    #   example '13,14' do
-    #     rnd = rand(10) + 10
-    #     # カート画面を開く
-    #     visit cart_items_path
-    #     # 商品の個数を変更し、
-    #     find(".cart_item_#{@cart_item.id}_number").set(rnd.to_s)
-    #     # fill_in "cart_item_#{@cart_item.id}_number", with: rnd
-    #     # 更新ボタンを押下する
-    #     find(".cart_item_#{@cart_item.id}_submit").click
-    #     # 個数が変更されているか
-    #     expect(@cart_item.how_many).to eq(rnd)
-    #     # 合計表示が正しく更新される
-    #     # 小計表示が正しく更新される FIXME:ホントは合計
-    #     expect(page).to have_content @cart_item.subtotal_price
-
-    #     # 次に進むボタンを押下する
-    #     click_button '情報入力に進む'
-    #     # 情報入力画面に遷移する
-    #     expect(page).to have_content '注文情報入力'
-    #   end
+    # example '13,14' do
+    #   rnd = rand(10) + 10
+    #   # カート画面を開く
+    #   visit cart_items_path
+    #   # 商品の個数を変更し、
+    #   find(".cart_item-#{@cart_item.id}-how_many").set(rnd)
+    #   # 更新ボタンを押下する
+    #   find(".cart_item-#{@cart_item.id}-submit").click
+    #   # 個数が変更されているか FIXME:変更されないバグあり
+    #   expect(@cart_item.how_many).to eq(rnd)
+    #   # 合計表示が正しく更新される
+    #   # 小計表示が正しく更新される FIXME:ホントは合計
+    #   expect(page).to have_content @cart_item.subtotal_price
+    #   # 次に進むボタンを押下する
+    #   click_button '情報入力に進む'
+    #   # 情報入力画面に遷移する
+    #   expect(page).to have_content '注文情報入力'
+    # end
     # end
 
     context '注文情報入力画面-注文確認画面' do
@@ -163,6 +160,8 @@ RSpec.describe "登録〜注文", type: :feature do
       end
 
       example '15,16,17,18,19' do
+        shipping_price = 800
+        total_price = @cart_item1.subtotal_price + @cart_item2.subtotal_price + shipping_price
         # 支払方法を選択する
         choose '銀行振込'
         # 登録済みの自分の住所を選択する
@@ -173,7 +172,7 @@ RSpec.describe "登録〜注文", type: :feature do
         expect(page).to have_content '注文情報確認'
         # 選択した商品、合計金額、配送方法などが表示されている
         expect(page).to have_content @cart_item1.name
-        expect(page).to have_content (@cart_item1.subtotal_price + @cart_item2.subtotal_price)
+        expect(page).to have_content total_price
         expect(page).to have_content '銀行振込'
         expect(page).to have_content @user1.address
         # 確定ボタンを押下する
@@ -198,7 +197,7 @@ RSpec.describe "登録〜注文", type: :feature do
         # マイページに遷移する
         visit users_path
         # 注文履歴一覧へのリンクを押下する
-        find(".orders_index").click
+        find(".orders-index").click
         # 注文履歴一覧画面が表示される
         expect(page).to have_content '注文履歴一覧'
       end
@@ -207,13 +206,14 @@ RSpec.describe "登録〜注文", type: :feature do
     context '注文履歴一覧画面' do
       before do
         @order = create(:order)
+        @order.update(user_id: @user1.id)
       end
 
       example '22,23,24' do
         # 注文履歴一覧画面に遷移する
         visit orders_path
         # 先ほどの注文の詳細表示ボタンを押下する
-        find(".order_#{@order.id}_show").click
+        find(".order-#{@order.id} .show").click
         # 注文詳細画面が表示される
         expect(page).to have_content '注文履歴詳細'
         expect(page).to have_content @order.total_price

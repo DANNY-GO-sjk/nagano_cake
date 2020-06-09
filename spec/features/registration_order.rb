@@ -177,20 +177,20 @@ RSpec.describe "登録〜注文", type: :feature do
         expect(page).to have_content @user1.address
         # 確定ボタンを押下する
         click_on '購入を確定する'
-        expect(page).to have_content 'ご購入ありがとうございました！'
+        expect(page).to have_content 'ご購入ありがとうございました'
       end
     end
 
-    context 'サンクスページ' do
-      example '20' do
-        # サンクスページに遷移する
-        visit thanks_order_path
-        # ヘッダのマイページへのリンクを押下する
-        click_on 'マイページ'
-        # マイページに遷移する
-        expect(page).to have_content 'マイページ'
-      end
-    end
+    # context 'サンクスページ' do
+    #   example '20' do
+    #     # サンクスページに遷移する
+    #     visit thanks_order_path
+    #     # ヘッダのマイページへのリンクを押下する
+    #     click_on 'マイページ'
+    #     # マイページに遷移する
+    #     expect(page).to have_content 'マイページ'
+    #   end
+    # end
 
     context 'マイページ' do
       example '21' do

@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
-  # has_many :key => "value", #なんの機能実装に必要？
+  has_many :items
   has_many :order_items, dependent: :destroy
 
   validates :progress, presence: true

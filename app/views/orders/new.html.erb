@@ -13,19 +13,21 @@
 
   <%= radio_button_tag(:s_address, "r1") %>
   <%= label_tag(:s_address_r1, "ご自身の住所") %>
-    <%= current_user.postcode %><%= current_user.address %><%= current_user.family_name %><%= current_user.first_name %>
+    <%= current_user.postcode %>
+    <%= current_user.address %>
+    <%= current_user.full_name %>
   <%= radio_button_tag(:s_address, "r2") %>
   <%= label_tag(:s_address_r2, "登録済み住所から選択") %>
-    <%= f.collection_select :r2_address, ShippingAddress.where(user_id: current_user.id), :id, :address %>
+    <%= collection_select :shipping_address, :id, current_user.shipping_addresses, :id, :full_address %>
   <!-- 新しいお届け先 -->
-  <%= radio_button_tag(:s_address, "radio3") %>
+  <%= radio_button_tag(:s_address, "r3") %>
   <%= label_tag(:s_address_r3, "新しいお届け先") %>
-    <%= f.label :r3_postcode, '郵便番号' %>
-    <%= f.text_field :r3_postcode %>
-    <%= f.label :r3_address, '住所' %>
-    <%= f.text_field :r3_address %>
-    <%= f.label :r3_receiver, '宛名' %>
-    <%= f.text_field :r3_receiver %>
+    <%= label_tag :r3_postcode, '郵便番号' %>
+    <%= text_field_tag :r3_postcode %>
+    <%= label_tag :r3_address, '住所' %>
+    <%= text_field_tag :r3_address %>
+    <%= label_tag :r3_receiver, '宛名' %>
+    <%= text_field_tag :r3_receiver %>
 
 
   <%= f.submit "確認画面へ進む" %>

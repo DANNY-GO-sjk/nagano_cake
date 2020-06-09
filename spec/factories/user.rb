@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "user#{n}@test.com" }
-    sequence(:family_name) { |n| "family_name#{n}" }
-    sequence(:first_name) { |n| "first_name#{n}" }
-    sequence(:family_name_yomi) { |n| "family_name_yomi#{n}" }
-    sequence(:first_name_yomi) { |n| "first_name_yomi#{n}" }
-    sequence(:postcode) { |n| "100811#{n}" }
-    sequence(:address) { |n| "東京都千代田区千代田１−#{n}" }
-    sequence(:phone_number) { |n| "0901111222#{n}" }
+    sequence(:family_name) { Faker::Name.last_name }
+    sequence(:first_name) { Faker::Name.first_name }
+    sequence(:family_name_yomi) { "family_name_yomi" }
+    sequence(:first_name_yomi) { "first_name_yomi" }
+    sequence(:postcode) { Faker::Number.number(digits: 7) }
+    sequence(:address) { Faker::Address.city }
+    sequence(:phone_number) { Faker::PhoneNumber.phone_number }
     sequence(:is_valid) { true }
     password { 'testtest' }
     password_confirmation { 'testtest' }

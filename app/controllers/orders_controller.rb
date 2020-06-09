@@ -33,28 +33,25 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    if request.post?
-      if params[:s_address] == "r1"
-        @postcode = current_user.postcode
-        @address = current_user.address
-        @receiver = current_user.family_name + current_user.first_name
-      elsif params[:s_address] == "r2"
-        adr = ShippingAddress.find(params[:order][:r2_address])
-        @postcode = adr.postcode
-        @address = adr.address
-        @receiver = adr.receiver
-      else
-        @postcode = params[:order][:r3_postcode]
-        @address = params[:order][:r3_address]
-        @receiver = params[:order][:r3_receiver]
-      end
+    if params[:s_address] == "r1"
+      @order.postcode = current_user.postcode
+      @order.address = current_user.address
+      @order.receiver = current_user.full_name
+    elsif params[:s_address] == "r2"
+      s_address = ShippingAddress.find(shipping_address_params[:id])
+      @order.postcode = s_address.postcode
+      @order.address = s_address.address
+      @order.receiver = s_address.receiver
+    elsif params[:s_address] == "r3" && has_correct_address?
+      @order.postcode = params[:r3_postcode]
+      @order.address = params[:r3_address]
+      @order.receiver = params[:r3_receiver]
     else
       render :new
     end
   end
 
   def back
-
   end
 
   private
@@ -67,5 +64,16 @@ class OrdersController < ApplicationController
       :address,
       :receiver
     )
+  end
+
+  def shipping_address_params
+    params.require(:shipping_address).permit(:id)
+  end
+
+  def has_correct_address?
+    return false if params[:r3_postcode].blank?
+    return false if params[:r3_address].blank?
+    return false if params[:r3_receiver].blank?
+    true
   end
 end

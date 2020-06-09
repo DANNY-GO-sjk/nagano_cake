@@ -50,16 +50,16 @@
   <span><%= @order.payment_method %></span>
 
   <h3>お届け先</h3>
-  <span><%= @postcode %></span>
-  <span><%= @address %></span>
-  <span><%= @receiver %></span>
+  <span><%= @order.postcode %></span>
+  <span><%= @order.address %></span>
+  <span><%= @order.receiver %></span>
 </div>
 
 <%= form_with model: @order, local: true do |f| %>
   <%= f.hidden_field :payment_method %>
-  <%= f.hidden_field :postcode, :value => @postcode %>
-  <%= f.hidden_field :address, :value => @address %>
-  <%= f.hidden_field :receiver, :value => @receiver %>
+  <%= f.hidden_field :postcode, :value => @order.postcode %>
+  <%= f.hidden_field :address, :value => @order.address %>
+  <%= f.hidden_field :receiver, :value => @order.receiver %>
   <%= f.hidden_field :total_price, value: total_price %>
     <div class="row actions">
     <%= f.submit "購入を確定する" %>

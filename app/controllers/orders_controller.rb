@@ -35,18 +35,18 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if request.post?
       if params[:s_address] == "r1"
-        @postcode = current_user.postcode
-        @address = current_user.address
-        @receiver = (current_user.family_name + current_user.first_name)
+        @order_postcode = current_user.postcode
+        @order_address = current_user.address
+        @order_receiver = current_user.full_name
       elsif params[:s_address] == "r2"
-        s_address = ShippingAddress.find(:r2_address)
-        @postcode = s_address.postcode
-        @address = s_address.address
-        @receiver = s_address.receiver
-      else
-        @postcode = r3_postcode
-        @address = r3_address
-        @receiver = r3_receiver
+        s_address = ShippingAddress.find(shipping_address_params[:id])
+        @order.postcode = s_address.postcode
+        @order.address = s_address.address
+        @order.receiver = s_address.receiver
+      elsif params[:s_address] == "r3"
+        @order.postcode = params[:r3_postcode]
+        @order.address = params[:r3_address]
+        @order.receiver = params[:r3_receiver]
       end
     else
       render :new
@@ -54,7 +54,6 @@ class OrdersController < ApplicationController
   end
 
   def back
-
   end
 
   private
@@ -67,5 +66,9 @@ class OrdersController < ApplicationController
       :address,
       :receiver
     )
+  end
+
+  def shipping_address_params
+    params.require(:shipping_address).permit(:id)
   end
 end

@@ -1,6 +1,6 @@
 <h1>商品詳細</h1>
 <table class="table table-bordered">
- <%= render 'genres/search', genres: @genres %>
+  <%= render 'genres/search', genres: @genres %>
 </table>
 <div class="item-box">
   <div class="item-image">
@@ -16,6 +16,4 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :item_id, value: @item.id %>
   <%= f.submit 'カートに入れる', class:'btn btn-primary' %>
-
-
 <% end %>

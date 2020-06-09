@@ -34,9 +34,9 @@ class OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     if params[:s_address] == "r1"
-      @order_postcode = current_user.postcode
-      @order_address = current_user.address
-      @order_receiver = current_user.full_name
+      @order.postcode = current_user.postcode
+      @order.address = current_user.address
+      @order.receiver = current_user.full_name
     elsif params[:s_address] == "r2"
       s_address = ShippingAddress.find(shipping_address_params[:id])
       @order.postcode = s_address.postcode

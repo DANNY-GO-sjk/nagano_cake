@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :shipping_addresses, dependent: :destroy
 
+
+  enum is_valid: { 無効: false, 有効: true }
+
   validates :first_name, presence: true
   validates :family_name, presence: true
   validates :family_name_yomi, presence: true
@@ -18,4 +21,9 @@ class User < ApplicationRecord
   validates :encrypted_password, presence: true
   validates :phone_number, presence: true
   validates :is_valid, presence: true
+
+  # ログイン時に退会済みのユーザーが入れなくする
+  def active_for_authentication?
+    super && (is_valid == '有効')
+  end
 end

@@ -5,14 +5,16 @@ Rails.application.routes.draw do
     post 'admins/sign_in' => 'admins/sessions#create', as: 'admin_session'
     delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'
   end
-  devise_for :users
+  devise_for :users, :controllers => {
+    :sessions => 'users/sessions',
+  }
   patch 'users/edit', to: 'users#update'
 
   get 'home' => 'home#index', as: 'home'
 
   resource :users, only: :show
   get 'users/edit_withdraw' => 'users#edit_withdraw', as: 'edit_user_withdraw'
-  put 'users' => 'users#withdraw', as: 'user_withdraw'
+  put 'users/withdraw' => 'users#withdraw', as: 'user_withdraw'
 
   resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
 
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
 
+  get 'genre/:id' => 'genres#search', as: 'genres_search'
   namespace :admins do
     resources :items, except: :destroy
     resources :genres, only: [:index, :create, :edit, :update]

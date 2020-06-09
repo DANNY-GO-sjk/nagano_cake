@@ -16,6 +16,15 @@
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
 
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .body {
   margin-top: 70px;
 }
+
+

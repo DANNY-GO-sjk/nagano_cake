@@ -2,7 +2,9 @@
     <div class="container">
       <div class= 'row'>
       <nav class='nav navbar-nav navbar-left' >
+        <%= link_to (home_path) do %>
           <span>LOGO</span>
+        <% end %>
       </nav>
 
       <div class='col-xs-9'>
@@ -17,6 +19,9 @@
 =======
               <%= link_to "マイページ", users_path, class: "btn-sm btn-success" %>
 >>>>>>> 8af3b87d90e961897ff3b451e78d21e7f07be2c3
+            </li>
+            <li>
+              <%= link_to "アバウト", about_path, class: "btn-sm btn-success" %>
             </li>
             <li>
               <%= link_to "商品一覧", items_path, class: "btn-sm btn-success" %>

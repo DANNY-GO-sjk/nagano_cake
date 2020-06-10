@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     reset_session # 情報をリセットする
     redirect_to home_path
   end
+
   private
 
   def user_params

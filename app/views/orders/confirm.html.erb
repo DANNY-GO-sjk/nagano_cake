@@ -6,7 +6,7 @@
 <h2>注文入力確認</h2>
 <div class="row">
   <div class="col-xs-8">
-    <table class="table">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>商品名</th>
@@ -29,7 +29,7 @@
     </table>
   </div>
   <div class="col-xs-4">
-    <table class="table">
+    <table class="table table-bordered">
       <tr>
         <th>送料</th>
         <td><%= shipping_price %></td>
@@ -47,12 +47,15 @@
 </div>
 <div class="row">
   <h3>支払方法</h3>
-  <span><%= @order.payment_method %></span>
-
+  <div class="col-md-10 col-md-offset-2">
+    <span><%= @order.payment_method %></span>
+  </div>
   <h3>お届け先</h3>
-  <span><%= @order.postcode %></span>
-  <span><%= @order.address %></span>
-  <span><%= @order.receiver %></span>
+  <div class="col-md-10 col-md-offset-2">
+    <span><%= @order.postcode %></span>
+    <span><%= @order.address %></span>
+    <span><%= @order.receiver %></span>
+  </div>
 </div>
 
 <%= form_with model: @order, local: true do |f| %>
@@ -61,7 +64,7 @@
   <%= f.hidden_field :address, :value => @order.address %>
   <%= f.hidden_field :receiver, :value => @order.receiver %>
   <%= f.hidden_field :total_price, value: total_price %>
-    <div class="row actions">
-    <%= f.submit "購入を確定する" %>
+  <div class="col-md-2 col-md-offset-6">
+    <%= f.submit "購入を確定する",class:'btn btn-primary'%>
   </div>
 <% end %>

@@ -25,4 +25,12 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (is_valid == '有効')
   end
+
+  def is_valid_false
+    if is_valid == '無効'
+      '退会済'
+    else
+      '有効'
+    end
+  end
 end

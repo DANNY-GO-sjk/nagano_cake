@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
         )
         cart_item.destroy
       end
-      redirect_to home_path # FIX: 本当はサンクスページ
+      render :complete
     else
     end
   end
@@ -33,7 +33,19 @@ class OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    if @order.has_shipping_address?
+    if params[:s_address] == "r1"
+      @order.postcode = current_user.postcode
+      @order.address = current_user.address
+      @order.receiver = current_user.full_name
+    elsif params[:s_address] == "r2"
+      s_address = ShippingAddress.find(shipping_address_params[:id])
+      @order.postcode = s_address.postcode
+      @order.address = s_address.address
+      @order.receiver = s_address.receiver
+    elsif params[:s_address] == "r3" && has_correct_address?
+      @order.postcode = params[:r3_postcode]
+      @order.address = params[:r3_address]
+      @order.receiver = params[:r3_receiver]
     else
       render :new
     end
@@ -52,5 +64,16 @@ class OrdersController < ApplicationController
       :address,
       :receiver
     )
+  end
+
+  def shipping_address_params
+    params.require(:shipping_address).permit(:id)
+  end
+
+  def has_correct_address?
+    return false if params[:r3_postcode].blank?
+    return false if params[:r3_address].blank?
+    return false if params[:r3_receiver].blank?
+    true
   end
 end

@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def edit_info
+    @user = current_user
+  end
+
   def update
     user = current_user
     if user.update(user_params)
@@ -22,7 +26,6 @@ class UsersController < ApplicationController
     reset_session # 情報をリセットする
     redirect_to home_path
   end
-
   private
 
   def user_params

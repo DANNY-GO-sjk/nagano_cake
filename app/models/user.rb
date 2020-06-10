@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :shipping_addresses, dependent: :destroy
 
+
   enum is_valid: { 無効: false, 有効: true }
 
   validates :first_name, presence: true
@@ -26,11 +27,14 @@ class User < ApplicationRecord
     super && (is_valid == '有効')
   end
 
+
   def is_valid_false
     if is_valid == '無効'
       '退会済'
     else
       '有効'
     end
+  def full_name
+    "#{family_name} #{first_name}"
   end
 end

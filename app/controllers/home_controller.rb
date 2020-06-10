@@ -3,4 +3,7 @@ class HomeController < ApplicationController
     @genres = Genre.where(is_valid: true)
     # @items = Item.おすすめ商品
   end
+
+  def about
+  end
 end

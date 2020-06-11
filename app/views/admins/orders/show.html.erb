@@ -3,7 +3,7 @@
 		<h3>注文履歴詳細</h3>
 	</div>
 	<div class="row">
-		<table class="table">
+		<table class="table table-bordered">
 				<tr>
 					<th>購入者</th>
 					<td><%= @order.user.family_name %><%= o.user.first_name %></td>
@@ -26,7 +26,7 @@
 		</table>
 	</div>
 	<div class="row">
-		<table class="table">
+		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>商品名</th>
@@ -52,7 +52,7 @@
 				<% end %>
 			</tbody>
 		</table>
-		<table>
+		<table class='table table-bordered'>
 			<tr>
 				<th>商品合計</th>
 				<td><%= @order.total_price %></td>

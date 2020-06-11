@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
     resources :order_items, only: :update
+    get '/search' => 'searches#search', as: 'search'
     get '/home' => 'home#index', as: 'home'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -14,4 +14,9 @@ class Item < ApplicationRecord
   def tax_included_price(price)
     (price * 1.08).floor
   end
+
+  def self.search(str)
+    return all unless str
+    where(["name LIKE ?", "%#{str}%"])
+  end
 end

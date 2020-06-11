@@ -29,4 +29,11 @@ class Order < ApplicationRecord
     end
     how_many
   end
+
+  def self.order_count
+    from  = Time.current.at_beginning_of_day
+    to    = (from + 1.day).at_end_of_day
+    items = Order.where(created_at: from...to)
+    items.count
+  end
 end

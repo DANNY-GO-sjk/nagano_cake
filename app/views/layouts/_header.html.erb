@@ -1,54 +1,54 @@
-<header class="navbar naver-default navbar-fixed-top">
-    <div class="container">
-      <div class= 'row'>
-      <nav class='nav navbar-nav navbar-left' >
-        <%= link_to (home_path) do %>
-          <span>LOGO</span>
-        <% end %>
-      </nav>
-
-      <div class='col-xs-9'>
-
-      <nav>
-        <ul class='nav navbar-nav navbar-right'>
-          <% if user_signed_in? %>
-            <span>ようこそ<%#= "#{current_user.family_name} #{current_user.first_name}" %>さん!!</span>
-
-            <li>
-              <%= link_to "マイページ", users_path, class: "btn-sm btn-success" %>
-            </li>
-            <li>
-              <%= link_to "アバウト", about_path, class: "btn-sm btn-success" %>
-            </li>
-            <li>
-              <%= link_to "商品一覧", items_path, class: "btn-sm btn-success" %>
-            </li>
-            <li>
-              <%= link_to "カート", cart_items_path, class: "btn-sm btn-success" %>
-            </li>
-            <li>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn-sm btn-success" %>
-            </li>
-          <% elsif admin_signed_in? %>
-            <li><%= link_to '商品一覧',admins_items_path,class: 'btn-sm btn-success' %></li>
-            <li><%= link_to '会員一覧', admins_users_path,class: 'btn-sm btn-success' %></li>
-            <li><%= link_to '注文履歴一覧', admins_orders_path,class: 'btn-sm btn-success' %></li>
-            <li><%= link_to 'ジャンル一覧', admins_genres_path,class: 'btn-sm btn-success' %></li>
-            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete,class: 'btn-sm btn-success' %></li>
-          <% else %>
-            <li>
-              <%= link_to "商品一覧", items_path, class: "btn-sm btn-success" %>
-            </li>
-            <li>
-              <%= link_to "新規登録", new_user_registration_path, class:"btn-sm btn-success" %>
-            </li>
-            <li>
-              <%= link_to "ログイン", new_user_session_path ,class: "btn-sm btn-success" %>
-            </li>
-          <% end %>
-        </ul>
-      </nav>
+<header>
+  <nav class='nav navbar-inverse' >
+    <div class='navbar-header'>
+      <%= link_to (home_path) do %>
+        <span id="logo">LOGO</span>
+      <% end %>
+      <% if user_signed_in? %>
+        <span id="name">ようこそ<%= current_user.full_name %>さん!!</span>
+      <% elsif admin_signed_in? %>
+        <%= render 'layouts/search_bar' %>
+      <% end %>
+      <button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target="#top-nav" >
+        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" style="color: white"></span>
+      </button>
     </div>
-  </div>
-  </div>
+    <div class="collapse navbar-collapse" id="top-nav">
+      <ul class='nav navbar-nav navbar-right'>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "マイページ", users_path, class: "btn-sm" %>
+          </li>
+          <li>
+            <%= link_to "アバウト", about_path, class: "btn-sm" %>
+          </li>
+          <li>
+            <%= link_to "商品一覧", items_path, class: "btn-sm" %>
+          </li>
+          <li>
+            <%= link_to "カート", cart_items_path, class: "btn-sm" %>
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn-sm" %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li><%= link_to '商品一覧',admins_items_path,class: 'btn-sm' %></li>
+          <li><%= link_to '会員一覧', admins_users_path,class: 'btn-sm' %></li>
+          <li><%= link_to '注文履歴一覧', admins_orders_path,class: 'btn-sm' %></li>
+          <li><%= link_to 'ジャンル一覧', admins_genres_path,class: 'btn-sm' %></li>
+          <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete,class: 'btn-sm' %></li>
+        <% else %>
+          <li>
+            <%= link_to "商品一覧", items_path, class: "btn-sm" %>
+          </li>
+          <li>
+            <%= link_to "新規登録", new_user_registration_path, class:"btn-sm" %>
+          </li>
+          <li>
+            <%= link_to "ログイン", new_user_session_path ,class: "btn-sm" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
 </header>

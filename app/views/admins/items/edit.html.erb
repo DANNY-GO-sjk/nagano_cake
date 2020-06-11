@@ -1,45 +1,4 @@
-<div class='row'>
-  <%= form_for(@item, url:"/admins/items/#{@item.id}") do |f| %>
-  <div class='col-xs-4'>
-    <h2>商品編集</h2>
-    <%= f.attachment_field :image %>
-  </div>
-  <div class='col-xs-8'>
-    <tbody>
-      <tr>
-        <td>
-          <%= f.label :name, "商品名" %>
-          <%= f.text_field :name %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= f.label :explanation, "商品説明" %>
-          <%= f.text_area :explanation %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= f.label :genre, "ジャンル" %>
-          <%= f.collection_select :genre_id, Genre.all, :id, :name %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-           <%= f.label :price, "税抜価格" %>
-            <%= f.text_field :price %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%= f.label :is_valid, "販売ステータス" %>
-          <%= f.select :is_valid, Item.is_valids.keys.map {|k| [k,k]}, {} %>
-        </td>
-      </tr>
-    </tbody>
-  </div>
-  <div class='col-xs-offset-10'>
-    <%= f.submit "変更を保存",class:"btn btn-info" %>
-  </div>
-  <% end %>
-</div>
+<h2>商品編集</h2>
+
+<%= render 'form', item: @item, submit_text: '変更を保存' %>
+

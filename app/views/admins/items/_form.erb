@@ -1,0 +1,26 @@
+<%= form_for(item, url:'/admins/items') do |f| %>
+  <%= f.label :image, class: 'image_label' do %>
+    <div class="prev-content">
+      <%= attachment_image_tag item, :image, :fill, 300, 200, fallback: "no_image.png", size:'300x200', class: "prev-image" %>
+    </div>
+  <% end %>
+  <%= f.attachment_field :image %>
+
+  <%= f.label :name, "商品名" %>
+  <%= f.text_field :name %>
+
+  <%= f.label :explanation, "商品説明" %>
+  <%= f.text_area :explanation %>
+
+  <%= f.label :genre, "ジャンル" %>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+
+  <%= f.label :price, "税抜価格" %>
+  <%= f.text_field :price %>
+
+  <%= f.label :is_valid, "販売ステータス" %>
+  <%= f.select :is_valid, Item.is_valids.keys.map {|k| [k,k]}, {} %>
+
+  <%= f.submit submit_text %>
+  <%= javascript_include_tag 'admins/image_preview.js' %>
+<% end %>

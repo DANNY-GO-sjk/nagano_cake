@@ -17,8 +17,12 @@ class ShippingAddressesController < ApplicationController
 
   def update
     @shipping_address = ShippingAddress.find(params[:id])
-    @shipping_address.update(shipping_address_params)
-    redirect_to shipping_addresses_path
+    @shipping_address.user_id = current_user.id
+    if @shipping_address.update(shipping_address_params)
+      redirect_to shipping_addresses_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy

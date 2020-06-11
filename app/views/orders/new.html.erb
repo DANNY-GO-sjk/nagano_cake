@@ -1,34 +1,42 @@
-<h2>注文入力情報</h2>
-<%= form_with model: @order, url: order_confirm_path, local: true do |f| %>
-
-  <h3>支払方法</h3>
-  <%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>
-  <%= f.label :payment_method_クレジットカード, 'クレジットカード' %>
-  <%= f.radio_button :payment_method, :銀行振込 %>
-  <%= f.label :payment_method_銀行振込, '銀行振込' %>
-
-
-
-  <h3>お届け先</h3>
-
-  <%= radio_button_tag(:s_address, "r1") %>
-  <%= label_tag(:s_address_r1, "ご自身の住所") %>
-    <%= current_user.postcode %>
-    <%= current_user.address %>
-    <%= current_user.full_name %>
-  <%= radio_button_tag(:s_address, "r2") %>
-  <%= label_tag(:s_address_r2, "登録済み住所から選択") %>
-    <%= collection_select :shipping_address, :id, current_user.shipping_addresses, :id, :full_address %>
-  <!-- 新しいお届け先 -->
-  <%= radio_button_tag(:s_address, "r3") %>
-  <%= label_tag(:s_address_r3, "新しいお届け先") %>
-    <%= label_tag :r3_postcode, '郵便番号' %>
-    <%= text_field_tag :r3_postcode %>
-    <%= label_tag :r3_address, '住所' %>
-    <%= text_field_tag :r3_address %>
-    <%= label_tag :r3_receiver, '宛名' %>
-    <%= text_field_tag :r3_receiver %>
+<div class='row'>
+    <div class="col-md-10 col-md-offset-2">
+      <%= form_with model: @order, url: order_confirm_path, local: true do |f| %>
+        <h2>注文入力情報</h2>
+        <h3>支払方法</h3>
+          <%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>
+          <%= f.label :payment_method_クレジットカード, 'クレジットカード' %>
+          <%= f.radio_button :payment_method, :銀行振込 %>
+          <%= f.label :payment_method_銀行振込, '銀行振込' %>
 
 
-  <%= f.submit "確認画面へ進む" %>
-<% end %>
+          <h3>お届け先</h3>
+
+            <%= radio_button_tag(:s_address, "r1") %>
+            <%= label_tag(:s_address_r1, "ご自身の住所") %><br>
+            <div class="col-md-10 col-md-offset-2">
+              <%= current_user.postcode %>
+              <%= current_user.address %>
+              <%= current_user.full_name %><br>
+            </div>
+            <%= radio_button_tag(:s_address, "r2") %>
+            <%= label_tag(:s_address_r2, "登録済み住所から選択") %><br>
+            <div class="col-md-10 col-md-offset-2">
+              <%= collection_select :shipping_address, :id, current_user.shipping_addresses, :id, :full_address %><br>
+            </div>
+            <!-- 新しいお届け先 -->
+            <%= radio_button_tag(:s_address, "r3") %>
+            <%= label_tag(:s_address_r3, "新しいお届け先") %><br>
+            <div class="col-md-10 col-md-offset-2">
+              <%= label_tag :r3_postcode, '郵便番号' %>
+              <%= text_field_tag :r3_postcode %><br>
+              <%= label_tag :r3_address, '住所' %>
+              <%= text_field_tag :r3_address %><br>
+              <%= label_tag :r3_receiver, '宛名' %>
+              <%= text_field_tag :r3_receiver %><br>
+            </div>
+            <div class="col-md-3 col-md-offset-7">
+              <%= f.submit "確認画面へ進む",class:'btn btn-primary' %>
+          <% end %>
+    </div>
+  </div>
+</div>

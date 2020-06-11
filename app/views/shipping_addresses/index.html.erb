@@ -30,14 +30,15 @@
       </div>
 
       <div class='row'>
-        <div class='col-xs-9'>
+        <div class='col-xs-11'>
           <table class='table table-hover table-bordered'>
             <thead>
               <tr class='active'>
-                <tr class='col-xs-1'>郵便番号</tr>
-                <tr class='col-xs-3'>住所</tr>
-                <tr class='col-xs-3'>宛名</tr>
-                <tr class='col-xs-2'></tr>
+                <th class='col-xs-4'>郵便番号</th>
+                <th class='col-xs-3'>住所</th>
+                <th class='col-xs-3'>宛名</th>
+                <th class='col-xs-2'></th>
+                <th class='col-xs-2'></th>
               </tr>
             </thead>
             <% @shipping_addresses.each do |shipping_address| %>
@@ -47,13 +48,11 @@
                 <td><%=shipping_address.address %></td>
                 <td><%=shipping_address.receiver%></td>
                 <td>
-                  <button type="button" class="btn btn-success btn-sm">
-                    <%= link_to "編集する", edit_shipping_address_path(shipping_address.id)%>
+                    <%= link_to "編集する", edit_shipping_address_path(shipping_address.id),class:'btn btn-success'%>
                   </button>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-danger btn-sm">
-                    <%= link_to "削除する", shipping_address_path(shipping_address.id), method: :delete %>
+                    <%= link_to "削除する", shipping_address_path(shipping_address.id), method: :delete ,class:'btn btn-danger'%>
                   </button>
                 </td>
               </tr>
@@ -66,4 +65,3 @@
 </div>
 
 
-  

@@ -27,6 +27,14 @@ class User < ApplicationRecord
     super && (is_valid == '有効')
   end
 
+  def show_validation
+    if is_valid == '無効'
+      '退会済'
+    else
+      '有効'
+    end
+  end
+
   def full_name
     "#{family_name} #{first_name}"
   end

@@ -48,6 +48,29 @@ header{
       margin: 5px;
     }
   }
+  #search-bar{
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    margin-left: 3em;
+    input, select{
+      height: 20px;
+      border: none;
+      vertical-align: middle;
+    }
+    input[type="text"]:focus {
+      outline: 0;
+    }
+    button[type="submit"]{
+      border: none;
+      background: none;
+      color: #3879D9;
+      position: absolute;
+      font-size: 16px;
+      right: 2px;
+      top: 2px;
+    }
+  }
 }
 
 footer{

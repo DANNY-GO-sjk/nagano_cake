@@ -1,28 +1,30 @@
-<h2>商品一覧</h2>
-
-<%= link_to "+" ,new_admins_item_path %>
-
-<table>
-	<thead>
-		<tr>
-			<th>商品ID</th>
-			<th>商品名</th>
-			<th>税抜価格</th>
-			<th>ジャンル</th>
-			<th>ステータス</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @items.each do |item| %>
+<div class='row'>
+	<h2>商品一覧</h2>
+	<div class='col-xs-offset-11'>
+		<%= link_to "+" ,new_admins_item_path %>
+	</div>
+	<table class='table'>
+		<thead>
 			<tr>
-				<td><%= item.id %></td>
-				<td><%= link_to item.name, admins_item_path(item.id) %></td>
-				<td><%= item.price %></td>
-				<!-- item.genre_idのname -->
-				<td><%= item.genre.name %></td>
-				<td><%= item.is_valid %></td>
+				<th>商品ID</th>
+				<th>商品名</th>
+				<th>税抜価格</th>
+				<th>ジャンル</th>
+				<th>ステータス</th>
 			</tr>
-		<% end %>
-		<%= paginate @items %>
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			<% @items.each do |item| %>
+				<tr>
+					<td><%= item.id %></td>
+					<td><%= link_to item.name, admins_item_path(item.id) %></td>
+					<td><%= item.price %></td>
+					<!-- item.genre_idのname -->
+					<td><%= item.genre.name %></td>
+					<td><%= item.is_valid %></td>
+				</tr>
+			<% end %>
+			<%= paginate @items %>
+		</tbody>
+	</table>
+</div>

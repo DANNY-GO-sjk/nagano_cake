@@ -22,5 +22,5 @@
   <%= f.select :is_valid, Item.is_valids.keys.map {|k| [k,k]}, {} %>
 
   <%= f.submit submit_text %>
-  <%= javascript_include_tag 'admins/image_preview.js' %>
+  <%= javascript_include_tag 'admins/image_preview.js', 'data-turbolinks-track': 'reload' %>
 <% end %>

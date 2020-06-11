@@ -6,6 +6,8 @@
       <% end %>
       <% if user_signed_in? %>
         <span id="name">ようこそ<%= current_user.full_name %>さん!!</span>
+      <% elsif admin_signed_in? %>
+        <%= render 'layouts/search_bar' %>
       <% end %>
       <button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target="#top-nav" >
         <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" style="color: white"></span>

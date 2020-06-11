@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :shipping_addresses, dependent: :destroy
 
-
   enum is_valid: { 無効: false, 有効: true }
 
   validates :first_name, presence: true
@@ -27,7 +26,21 @@ class User < ApplicationRecord
     super && (is_valid == '有効')
   end
 
+  def show_validation
+    if is_valid == '無効'
+      '退会済'
+    else
+      '有効'
+    end
+  end
+
   def full_name
     "#{family_name} #{first_name}"
+  end
+
+  def self.search(str)
+    return all unless str
+    where(['family_name LIKE ?', "%#{str}%"]).or(where(['first_name LIKE ?', "%#{str}%"])).
+      or(where(['family_name_yomi LIKE ?', "%#{str}%"])).or(where(['first_name_yomi LIKE ?', "%#{str}%"]))
   end
 end

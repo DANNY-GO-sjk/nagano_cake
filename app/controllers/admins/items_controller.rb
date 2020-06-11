@@ -1,6 +1,6 @@
 class Admins::ItemsController < ApplicationController
   def index
-    @items = Item.page(params[:page])
+    @items = Item.page(params[:page]).search(params[:str])
   end
 
   def new
@@ -13,7 +13,6 @@ class Admins::ItemsController < ApplicationController
       flash[:notice] = "商品登録が完了しました"
       redirect_to admins_items_path
     else
-      @item = Item.new
       render :new
     end
   end

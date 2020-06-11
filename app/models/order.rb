@@ -21,9 +21,10 @@ class Order < ApplicationRecord
     return false if receiver.blank?
     true
   end
+
   def how_many
     how_many = 0
-    self.order_items.each do |order_item|
+    order_items.each do |order_item|
       how_many += order_item.how_many
     end
     how_many

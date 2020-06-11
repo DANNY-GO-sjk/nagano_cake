@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :shipping_addresses, dependent: :destroy
 
-
   enum is_valid: { 無効: false, 有効: true }
 
   validates :first_name, presence: true

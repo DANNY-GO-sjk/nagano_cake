@@ -1,14 +1,17 @@
 <h2>ジャンル編集</h2>
 
 <%= form_for(@genre, url:"/admins/genres/#{@genre.id}") do |f| %>
+  <div class='col-xs-8'>
+    <%= f.label :name, "ジャンル" %>
+    <%= f.text_area :name %>
 
-<%= f.label :name, "ジャンル" %>
-<%= f.text_area :name %>
+    <%= f.radio_button :is_valid, :有効 %>
+    <%= f.label :有効 %>
+    <%= f.radio_button :is_valid, :無効 %>
+    <%= f.label :無効 %>
+  </div>
+  <div class='col-xs-2'>
+    <%= f.submit "変更を保存する",class:"btn btn-info" %>
 
-<%= f.radio_button :is_valid, :有効 %>
-<%= f.label :有効 %>
-<%= f.radio_button :is_valid, :無効 %>
-<%= f.label :無効 %>
-
-<%= f.submit "変更を保存する" %>
+  </div>
 <% end %>

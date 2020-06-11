@@ -38,14 +38,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%= @order.order_items.each do |order_item| %>
+				<% @order.order_items.each do |order_item| %>
 				<tr>
 					<td><%= order_item.item.name %></td>
 					<td><%= order_item.price %></td>
           <td><%= order_item.how_many %></td>
           <td><%= order_item.price * order_item.how_many %></td>
-          <%= form_for(order_item, url:"/admins/order_items/#{@order_item.id}") do |f| %>
-          <td><%= f.select :progress, Order_item.progresses.keys.map {|k| [k,k]}, {} %></td>
+          <%= form_for(order_item, url:"/admins/order_items/#{order_item.id}") do |f| %>
+          <td><%= f.select :progress, OrderItem.progresses.keys.map {|k| [k,k]}, {} %></td>
           <td><%= f.submit '更新', class: "btn btn-default" %></td>
           <% end %>
 				</tr>
@@ -63,7 +63,7 @@
 			</tr>
 			<tr>
 				<th>請求金額合計</th>
-				<td><%= total_price + @order.shipping_price %></td>
+				<td><%= @order.total_price + @order.shipping_price %></td>
 			</tr>
 		</table>
 	</div>

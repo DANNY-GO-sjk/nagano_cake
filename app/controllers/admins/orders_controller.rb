@@ -8,6 +8,12 @@ class Admins::OrdersController < ApplicationController
 	end
 	def update
 		@order = Order.find(params[:id])
+		if params[:order][:progress] == '入金確認'
+			order_items = @order.order_items
+			order_items.each do |order_item|
+				OrderItem.update(progress: "製作待ち")
+			end
+		end
 		@order.update(order_params)
 		redirect_to admins_order_path(@order.id)
 	end

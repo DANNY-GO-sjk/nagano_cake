@@ -1,47 +1,47 @@
 <div class='row'>
 	<h2>商品新規登録</h2>
-			<%= form_for(@item, url:'/admins/items') do |f| %>
-			<div class='col-xs-4'>
-				<tr>
-					<td>
-						<%= f.attachment_field :image %>
-					</td>
-				</tr>
+	<%= form_for(@item, url:'/admins/items') do |f| %>
+		<div class='col-xs-4'>
+			<tr>
+				<td>
+					<%= f.attachment_field :image %>
+				</td>
+			</tr>
+		</div>
+		<div class='col-xs-3'>
+			<tr>
+				<td>
+					<%= f.label :name, "商品名" %>
+					<%= f.text_field :name %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<%= f.label :explanation, "商品説明" %>
+					<%= f.text_area :explanation %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<%= f.label :genre, "ジャンル" %>
+					<%= f.collection_select :genre_id, Genre.all, :id, :name %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<%= f.label :price, "税抜価格" %>
+					<%= f.text_field :price %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<%= f.label :is_valid, "販売ステータス" %>
+					<%= f.select :is_valid, Item.is_valids.keys.map {|k| [k,k]}, {} %>
+				</td>
+			</tr>
+			<div class='col-xs-offset-12'>
+				<%= f.submit "新規登録" ,class:"btn btn-info"%>
 			</div>
-			<div class='col-xs-3'>
-				<tr>
-					<td>
-						<%= f.label :name, "商品名" %>
-						<%= f.text_field :name %>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<%= f.label :explanation, "商品説明" %>
-						<%= f.text_area :explanation %>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<%= f.label :genre, "ジャンル" %>
-						<%= f.collection_select :genre_id, Genre.all, :id, :name %>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<%= f.label :price, "税抜価格" %>
-						<%= f.text_field :price %>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<%= f.label :is_valid, "販売ステータス" %>
-						<%= f.select :is_valid, Item.is_valids.keys.map {|k| [k,k]}, {} %>
-					</td>
-				</tr>
-				<div class='col-xs-offset-12'>
-					<%= f.submit "新規登録" ,class:"btn btn-info"%>
-				</div>
-			</div>
+		</div>
 	<% end %>
 </div>

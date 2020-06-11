@@ -1,4 +1,6 @@
 class GenresController < ApplicationController
+  before_action :authenticate_user!
+
   def search
     @genres = Genre.where(is_valid: true)
     @genre = Genre.find(params[:id])

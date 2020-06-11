@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
   before_action :order_params, only: [:create, :confirm]
 
   def index

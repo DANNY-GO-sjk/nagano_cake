@@ -1,4 +1,6 @@
 class ShippingAddressesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @shipping_address = ShippingAddress.new
     @shipping_addresses = current_user.shipping_addresses

@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function () {
+$(document).ready(function () {
   // 画像が選択された時に発火します
   $(document).on('change', '#item_image', function () {
     console.log("ok")

@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   get 'genre/:id' => 'genres#search', as: 'genres_search'
   namespace :admins do
     resources :items, except: :destroy
-    patch '/items' => 'items#update'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]

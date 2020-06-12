@@ -17,19 +17,31 @@
       <ul class='nav navbar-nav navbar-right'>
         <% if user_signed_in? %>
           <li>
-            <%= link_to "マイページ", users_path, class: "btn-sm" %>
+            <%= link_to users_path do %>
+
+              <i class="glyphicon glyphicon-user">マイページ</i>
+            <% end %>
           </li>
           <li>
-            <%= link_to "アバウト", about_path, class: "btn-sm" %>
+            <%= link_to  about_path do %>
+              <i class="glyphicon glyphicon-link" aria-hidden="true">紹介</i>
+            <% end %>
+
           </li>
           <li>
-            <%= link_to "商品一覧", items_path, class: "btn-sm" %>
+            <%= link_to items_path do %>
+              <i class="fa fa-birthday-cake">商品一覧</i>
+            <% end %>
           </li>
           <li>
-            <%= link_to "カート", cart_items_path, class: "btn-sm" %>
+            <%= link_to cart_items_path do %>
+              <i class="glyphicon glyphicon-shopping-cart">カート</i>
+            <% end %>
           </li>
           <li>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn-sm" %>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="glyphicon glyphicon-log-out" aria-hidden="true">ログアウト</i>
+            <% end %>
           </li>
         <% elsif admin_signed_in? %>
           <li><%= link_to '商品一覧',admins_items_path,class: 'btn-sm' %></li>
@@ -39,13 +51,19 @@
           <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete,class: 'btn-sm' %></li>
         <% else %>
           <li>
-            <%= link_to "商品一覧", items_path, class: "btn-sm" %>
+            <%= link_to items_path do %>
+              <i class="fa fa-birthday-cake">商品一覧</i>
+            <% end %>
           </li>
           <li>
-            <%= link_to "新規登録", new_user_registration_path, class:"btn-sm" %>
+            <%= link_to new_user_registration_path do %>
+              <i class="glyphicon glyphicon-new-window" aria-hidden="true">新規登録</i>
+            <% end %>
           </li>
           <li>
-            <%= link_to "ログイン", new_user_session_path ,class: "btn-sm" %>
+            <%= link_to  new_user_session_path do%>
+              <i class="glyphicon glyphicon-log-in" aria-hidden="true">ログイン</i>
+            <% end %>
           </li>
         <% end %>
       </ul>

@@ -11,11 +11,10 @@
         購入には会員登録が必要になります。
       </p>
     </div>
-    <div class="featured-items">
+    <div class="recommended-items">
       <h3>おすすめ商品</h3>
-      <%= '未実装です' %>
-      <%#=render 'items/item_index', items: @items %>
-      <%= link_to 'もっと見る(未実装です)', '#' %>
+        <%= render 'items/item_index', items: @items %>
+      <%= link_to 'もっと見る', items_path %>
     </div>
   </div>
 </div>

@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
+
   def index
     # is_validがマッチするレコードを全て取得
     @genres = Genre.where(is_valid: true)

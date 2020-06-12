@@ -6,7 +6,7 @@
       </table>
     </div>
     <div class='col-xs-9'>
-      <h1>商品一覧</h1>
+      <h2>商品一覧</h2>
       <p>(全<%= @items.count %>件)</p>
       <% @items.each do |item| %>
 
@@ -30,6 +30,5 @@
       <div style="text-align: center;">
         <%= paginate @items %>
       </div>
-    
   </div>
 </div>

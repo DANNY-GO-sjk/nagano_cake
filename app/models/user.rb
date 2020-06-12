@@ -41,6 +41,7 @@ class User < ApplicationRecord
   def self.search(str)
     return all unless str
     where(['family_name LIKE ?', "%#{str}%"]).or(where(['first_name LIKE ?', "%#{str}%"])).
-      or(where(['family_name_yomi LIKE ?', "%#{str}%"])).or(where(['first_name_yomi LIKE ?', "%#{str}%"]))
+      or(where(['family_name_yomi LIKE ?', "%#{str}%"])).
+      or(where(['first_name_yomi LIKE ?', "%#{str}%"]))
   end
 end

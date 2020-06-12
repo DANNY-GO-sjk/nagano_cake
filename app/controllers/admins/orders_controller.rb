@@ -5,10 +5,6 @@ class Admins::OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  def index
-    @orders = Order.all
-  end
-
   def show
     @order = Order.find(params[:id])
   end
@@ -21,12 +17,6 @@ class Admins::OrdersController < ApplicationController
         OrderItem.update(progress: "製作待ち")
       end
     end
-    @order.update(order_params)
-    redirect_to admins_order_path(@order.id)
-  end
-
-  def update
-    @order = Order.find(params[:id])
     @order.update(order_params)
     redirect_to admins_order_path(@order.id)
   end

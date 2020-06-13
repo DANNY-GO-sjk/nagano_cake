@@ -1,52 +1,38 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h2><i class="fa fa-address-card"></i>登録情報編集</h2>
-      <%= form_for @user, url: {action: "edit"} do |f| %>
-        <table class='edit_table'>
-          <tr>
-            <td><%= f.label '(姓)' %></td>
-            <td> <%= f.text_field :family_name, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label '(名)' %></td>
-            <td><%= f.text_field :first_name, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label '(セイ)' %></td>
-            <td><%= f.text_field :family_name_yomi, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label '(メイ)' %></td>
-            <td><%= f.text_field :first_name_yomi, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label '郵便番号(ハイフンなし)' %></td>
-            <td><%= f.text_field :postcode, class: "form-control"%></td>
-          </tr>
-          <tr>
-            <td><%= f.label '住所' %></td>
-            <td><%= f.text_field :address, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label '電話番号(ハイフンなし)' %></td>
-            <td><%= f.text_field :phone_number, class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td>
-              <div class='action'>
-                <%= f.submit "編集内容を保存する",class: 'btn-sm btn-primary' %>
-              </div>
-            </td>
-            <td>
-              <div class='withdraw'>
-                 <%= link_to '退会する', edit_user_withdraw_path, class: "btn-sm btn-danger" %>
-              </div>
-            </td>
-          </tr>
-        </table>
-        <% end %>
+<div class="row">
+  <div class="col-md-12">
+    <h2><i class="fa fa-address-card"></i>登録情報編集</h2>
+    <%= form_for @user, url: {action: "edit"} do |f| %>
+      <div class="row row-form">
+        <span class="col-md-2 col-xs-12">名前</span>
+        <%= f.label '(姓)', class: "col-md-1 col-xs-2" %>
+        <%= f.text_field :family_name, class: "col-md-2 col-xs-4 form-control" %>
+        <%= f.label '(名)', class: "col-md-1 col-xs-2" %>
+        <%= f.text_field :first_name, class: "col-md-2 col-xs-4 form-control" %>
       </div>
+      <div class="row row-form">
+        <span class="col-md-2 col-xs-12">フリガナ</span>
+        <%= f.label '(セイ)', class: "col-md-1 col-xs-2" %>
+        <%= f.text_field :family_name_yomi, class: "col-md-2 col-xs-4 form-control" %>
+        <%= f.label '(メイ)', class: "col-md-1 col-xs-2" %>
+        <%= f.text_field :first_name_yomi, class: "col-md-2 col-xs-4 form-control" %>
+      </div>
+      <div class="row row-form">
+        <%= f.label '郵便番号(ハイフンなし)', class: "col-md-3 col-xs-4" %>
+        <%= f.text_field :postcode, class: "col-md-9 col-xs-8 form-control"%>
+      </div>
+      <div class="row row-form">
+        <%= f.label '住所', class: "col-md-3 col-xs-4" %>
+        <%= f.text_field :address, class: "col-md-9 col-xs-8 form-control", size: "50" %>
+      </div>
+      <div class="row row-form">
+        <%= f.label '電話番号(ハイフンなし)', class: "col-md-3 col-xs-4" %>
+        <%= f.text_field :phone_number, class: "col-md-9 col-xs-8 form-control" %>
+      </div>
+      <div class='action'>
+        <%= f.submit "編集内容を保存する",class: 'btn btn-sm btn-primary' %>
+        <%= link_to '退会する', edit_user_withdraw_path, class: "btn btn-sm btn-danger" %>
+      </div>
+    <% end %>
   </div>
 </div>
 

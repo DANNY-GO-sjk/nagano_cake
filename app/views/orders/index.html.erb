@@ -14,16 +14,16 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.created_at %></td>
+        <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
         <td>
-          <div><%= order.postcode %></div>
-          <div><%= order.address %></div>
-          <div><%= order.receiver %></div>
+          <p><%= order.postcode %></p>
+          <p><%= order.address %></p>
+          <p><%= order.receiver %></p>
         </td>
         <td>
           <ul>
             <% order.order_items.each do |order_item| %>
-              <li><%= order_item.item.name %></li>
+              <p><%= order_item.item.name %></p>
             <% end %>
           </ul>
         </td>

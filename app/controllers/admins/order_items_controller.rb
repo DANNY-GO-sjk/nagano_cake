@@ -1,4 +1,6 @@
 class Admins::OrderItemsController < ApplicationController
+  before_action :authenticate_admin!
+
   def update
     @order_item = OrderItem.find(params[:id])
     @order_item.update(order_item_params)
@@ -23,6 +25,4 @@ class Admins::OrderItemsController < ApplicationController
   def order_item_params
     params.require(:order_item).permit(:order_id, :item_id, :how_many, :price, :progress)
   end
-
 end
-

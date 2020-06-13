@@ -1,5 +1,7 @@
 class CartItemsController < ApplicationController
+  before_action :authenticate_user!
   before_action :cart_item_params, only: [:update]
+
   def index
     @cart_items = current_user.cart_items
   end

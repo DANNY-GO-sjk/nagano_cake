@@ -16,6 +16,18 @@
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
 
+@font-face {
+  font-family: 'NotoSansJP-Light';
+  src: font-url('NotoSansJP-Light.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GenJyuuGothic-Normal';
+  src: font-url('GenJyuuGothic-Normal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 *{
   margin: 0;
@@ -28,6 +40,11 @@ body{
   position: relative;
   padding-bottom: 60px;/*←footerの高さ*/
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+  font-family: 'NotoSansJP-Light';
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'GenJyuuGothic-Normal';
 }
 
 header{

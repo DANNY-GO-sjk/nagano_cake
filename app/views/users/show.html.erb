@@ -1,5 +1,5 @@
-<h1>マイページ</h1>
-<h2>登録情報</h2>
+<h2><i class="fa fa-address-card"></i>マイページ</h2>
+<h3><i class="fa fa-address-book"></i>登録情報</h3>
 <%= link_to "編集する",users_edit_info_path, class: "btn-sm btn-success" %>
 <%= link_to "パスワードを変更する",edit_user_registration_path, class: "btn-sm btn-success" %>
 	<table class="table table-bordered">
@@ -26,7 +26,7 @@
 			</tr>
 		</tbody>
 	</table>
-<h2>配送先</h2>
+<h3><i class="fa fa-truck"></i>配送先</h3>
 <%= link_to '一覧を見る', shipping_addresses_path, class: 'btn btn-primary' %>
-<h2>注文履歴</h2>
+<h3><i class="fa fa-table"></i>注文履歴</h3>
 <%= link_to '一覧を見る', orders_path, class: 'btn btn-primary' %>

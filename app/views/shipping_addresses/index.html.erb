@@ -7,6 +7,11 @@
       </div>
       <div class='row'>
         <div class='col-xs-8'>
+          <% if flash[:alert] %>
+            <div>
+              <%= flash[:alert] %>
+            </div>
+          <% end %>
           <div class="table table-borderless">
             <%= form_for(@shipping_address) do |f| %>
             <div class="col-xs-offset-1 col-xs-11">

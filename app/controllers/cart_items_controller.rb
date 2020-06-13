@@ -8,10 +8,10 @@ class CartItemsController < ApplicationController
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.user_id = current_user.id
     if @cart_item.save
-      redirect_to cart_items_path
+      redirect_to cart_items_path, notice: '商品をカートに入れました'
     else
       @item = Item.find(params[:cart_item][:item_id])
-      redirect_to item_path(@item.id)
+      redirect_to item_path(@item.id), alert: '個数を指定してください'
     end
   end
 

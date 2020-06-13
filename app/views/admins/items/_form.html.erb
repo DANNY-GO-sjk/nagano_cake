@@ -3,7 +3,7 @@
     <%= form_for(item, url:"/admins/items/#{item.id}") do |f| %>
       <%= f.label :image, class: 'image_label' do %>
         <div class="prev-content">
-          <%= attachment_image_tag item, :image, :fill, 300, 200, fallback: "no_image.png", size:'300x200', class: "prev-image" %>
+          <%= attachment_image_tag item, :image, :fill, 300, 300, fallback: "no_image.png", size:'300x300', class: "prev-image" %>
         </div>
       <% end %>
       <%= f.attachment_field :image %>

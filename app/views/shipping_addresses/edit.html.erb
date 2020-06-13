@@ -8,27 +8,27 @@
         </div>
       <% end %>
 
-        <div class="">
+      <div class="">
         <%= form_for(@shipping_address) do |f| %>
           <table class='edit_table'>
-          <tr>
-            <td><%= f.label '郵便番号' %></td>
-            <td><%= f.text_field :postcode,class: "form-control"%></td>
-          </tr>
-          <tr>
-            <td><%= f.label '住所' %></td>
-            <td><%= f.text_field :address ,class: "form-control"%></td>
-          </tr>
-          <tr>
-            <td><%= f.label '住所宛名' %></td>
-            <td><%= f.text_field :receiver ,class: "form-control"%></td>
-          </tr>
-        </table>
-        </div>
+            <tr>
+              <td><%= f.label '郵便番号' %></td>
+              <td><%= f.text_field :postcode,class: "form-control"%></td>
+            </tr>
+            <tr>
+              <td><%= f.label '住所' %></td>
+              <td><%= f.text_field :address ,class: "form-control"%></td>
+            </tr>
+            <tr>
+              <td><%= f.label '住所宛名' %></td>
+              <td><%= f.text_field :receiver ,class: "form-control"%></td>
+            </tr>
+          </table>
+          <div class='col-xs-offset-7 col-xs-5'>
+              <%= f.submit '編集する',class: "btn btn-primary"%>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class='col-xs-offset-7 col-xs-5'>
-      <%= f.submit '編集する',class: "btn btn-primary"%>
-    </div>
-    <% end %>
   </div>
 </div>

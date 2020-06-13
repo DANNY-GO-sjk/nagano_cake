@@ -115,8 +115,17 @@ footer{
   }
 }
 
+.table-wrapper, .form-wrapper {
+  overflow: auto;
+}
+
 th {
+  min-width: 10rem;
   background-color: #eee;
+}
+
+td {
+  min-width: 10rem;
 }
 
 .row-form {

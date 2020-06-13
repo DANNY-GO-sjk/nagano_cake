@@ -9,17 +9,17 @@
     <%= form_for @user, url: {action: "edit"} do |f| %>
       <div class="row row-form">
         <span class="col-md-2 col-xs-12">名前</span>
-        <%= f.label '(姓)', class: "col-md-1 col-xs-2" %>
-        <%= f.text_field :family_name, class: "col-md-2 col-xs-4 form-control" %>
-        <%= f.label '(名)', class: "col-md-1 col-xs-2" %>
-        <%= f.text_field :first_name, class: "col-md-2 col-xs-4 form-control" %>
+        <%= f.label '(姓)', class: "col-md-1 col-xs-4" %>
+        <%= f.text_field :family_name, class: "col-md-2 col-xs-8 form-control" %>
+        <%= f.label '(名)', class: "col-md-1 col-xs-4" %>
+        <%= f.text_field :first_name, class: "col-md-2 col-xs-8 form-control" %>
       </div>
       <div class="row row-form">
         <span class="col-md-2 col-xs-12">フリガナ</span>
-        <%= f.label '(セイ)', class: "col-md-1 col-xs-2" %>
-        <%= f.text_field :family_name_yomi, class: "col-md-2 col-xs-4 form-control" %>
-        <%= f.label '(メイ)', class: "col-md-1 col-xs-2" %>
-        <%= f.text_field :first_name_yomi, class: "col-md-2 col-xs-4 form-control" %>
+        <%= f.label '(セイ)', class: "col-md-1 col-xs-4" %>
+        <%= f.text_field :family_name_yomi, class: "col-md-2 col-xs-8 form-control" %>
+        <%= f.label '(メイ)', class: "col-md-1 col-xs-4" %>
+        <%= f.text_field :first_name_yomi, class: "col-md-2 col-xs-8 form-control" %>
       </div>
       <div class="row row-form">
         <%= f.label '郵便番号(ハイフンなし)', class: "col-md-3 col-xs-4" %>

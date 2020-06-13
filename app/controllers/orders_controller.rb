@@ -7,6 +7,10 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @cart_items = current_user.cart_items
+    if @cart_items.ids.blank?
+      redirect_to cart_items_path, alert: 'カートに商品を入れてください'
+    end
     @order = Order.new
   end
 
@@ -38,7 +42,7 @@ class OrdersController < ApplicationController
       @order.postcode = current_user.postcode
       @order.address = current_user.address
       @order.receiver = current_user.full_name
-    elsif params[:s_address] == "r2"
+    elsif params[:s_address] == "r2" && params[:shipping_address].present?
       s_address = ShippingAddress.find(shipping_address_params[:id])
       @order.postcode = s_address.postcode
       @order.address = s_address.address
@@ -48,6 +52,7 @@ class OrdersController < ApplicationController
       @order.address = params[:r3_address]
       @order.receiver = params[:r3_receiver]
     else
+      flash[:alert] = "不足している情報があります"
       render :new
     end
   end

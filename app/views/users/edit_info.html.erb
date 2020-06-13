@@ -1,6 +1,11 @@
 <div class="row">
   <div class="col-md-12">
     <h2><i class="fa fa-address-card"></i>登録情報編集</h2>
+    <% if flash[:alert] %>
+      <div>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
     <%= form_for @user, url: {action: "edit"} do |f| %>
       <div class="row row-form">
         <span class="col-md-2 col-xs-12">名前</span>

@@ -2,6 +2,11 @@
   <div class="col-md-10 col-md-offset-1 col-xs-12">
     <%= form_with model: @order, url: order_confirm_path, local: true do |f| %>
       <h2><i class="fa fa-table"></i>注文入力情報</h2>
+      <% if flash[:alert] %>
+        <div>
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
       <h3>支払方法</h3>
       <%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>
       <%= f.label :payment_method_クレジットカード, 'クレジットカード' %>

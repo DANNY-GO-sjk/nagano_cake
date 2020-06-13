@@ -11,11 +11,16 @@
   </head>
 
   <body>
-    <%=render 'layouts/header' %>
-    <div class='container'>
-      <div class='main'>
-        <%= yield %>
-      </div>
+    <div class='body'>
+      <%=render 'layouts/header' %>
+      <% if flash[:notice] %>
+        <div class='alert alert-success'>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <div class='container'>
+         <%= yield %>
+       </div>
     </div>
     <%= render 'layouts/footer' %>
   </body>

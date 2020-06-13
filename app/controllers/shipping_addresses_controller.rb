@@ -13,6 +13,7 @@ class ShippingAddressesController < ApplicationController
       redirect_to shipping_addresses_path, notice: '配送先情報を登録しました'
     else
       flash[:alert] = "入力されていない箇所があります"
+      @shipping_addresses = current_user.shipping_addresses
       render 'index'
     end
   end

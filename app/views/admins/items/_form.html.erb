@@ -1,4 +1,6 @@
 <div class='row'>
+</div>
+<div class='row'>
   <div class='col-xs-5'>
     <%= form_for(item, url:"/admins/items/#{item.id}") do |f| %>
       <%= f.label :image, class: 'image_label' do %>
@@ -54,6 +56,11 @@
         <%= f.label :recommended, 'オススメ商品に表示する' %>
       </div>
       <%= f.submit submit_text %>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="row alert alert-warning">
+          <%= flash[:alert] %>
+      </div>
     <% end %>
   </div>
   <%= javascript_include_tag 'admins/image_preview.js' %>

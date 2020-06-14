@@ -53,7 +53,7 @@
             </button>
           </td>
           <td>
-              <%= link_to "削除する", shipping_address_path(shipping_address.id), method: :delete ,class:'btn btn-danger'%>
+              <%= link_to "削除する", shipping_address_path(shipping_address.id), method: :delete , "data-confirm" => "本当に削除しますか？", class:'btn btn-danger'%>
             </button>
           </td>
         </tr>

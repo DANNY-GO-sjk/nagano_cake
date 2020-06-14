@@ -14,10 +14,12 @@ class Admins::UsersController < ApplicationController
   end
 
   def update
-    @user = @user = User.find(params[:id])
+    @user = User.find(params[:id])
     if @user.update(user_params)
+      flash[:notice] = "顧客情報を変更しました"
       redirect_to admins_user_path(@user)
     else
+      flash[:alert] = "情報が入力されていない箇所があります"
       render 'edit'
     end
   end

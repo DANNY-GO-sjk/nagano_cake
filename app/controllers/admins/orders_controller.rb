@@ -18,6 +18,7 @@ class Admins::OrdersController < ApplicationController
       end
     end
     @order.update(order_params)
+    flash[:notice] = "注文ステータスを変更しました"
     redirect_to admins_order_path(@order.id)
   end
 

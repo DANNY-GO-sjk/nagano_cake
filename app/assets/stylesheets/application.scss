@@ -63,13 +63,14 @@ header{
     line-height: 60px;
   }
   #logo{
-    font-size:30px;
-    padding-top:10px;
+    width: 40vw;
+    max-width: 200px;
+    padding-left: 3px;
     color:#fff;
   }
   #name{
     color:#fff;
-    margin-left: 3em;
+    margin-left: 1.6rem;
   }
   .navbar-right{
     li{

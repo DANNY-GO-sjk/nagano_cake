@@ -1,0 +1,72 @@
+<header>
+  <nav class='nav navbar-inverse' >
+    <div class='navbar-header'>
+      <%= link_to (home_path) do %>
+        <%= image_tag 'logo.png', id: "logo" %>
+      <% end %>
+      <% if user_signed_in? %>
+        <span id="name">ようこそ<%= current_user.full_name %>さん!!</span>
+      <% elsif admin_signed_in? %>
+        <%= render 'layouts/search_bar' %>
+      <% end %>
+      <button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target="#top-nav" >
+        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" style="color: white"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="top-nav">
+      <ul class='nav navbar-nav navbar-right'>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to users_path do %>
+
+              <i class="glyphicon glyphicon-user">マイページ</i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to  about_path do %>
+              <i class="glyphicon glyphicon-link" aria-hidden="true">紹介</i>
+            <% end %>
+
+          </li>
+          <li>
+            <%= link_to items_path do %>
+              <i class="fa fa-birthday-cake">商品一覧</i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to cart_items_path do %>
+              <i class="glyphicon glyphicon-shopping-cart">カート</i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="glyphicon glyphicon-log-out" aria-hidden="true">ログアウト</i>
+            <% end %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li><%= link_to '商品一覧',admins_items_path,class: 'btn-sm' %></li>
+          <li><%= link_to '会員一覧', admins_users_path,class: 'btn-sm' %></li>
+          <li><%= link_to '注文履歴一覧', admins_orders_path,class: 'btn-sm' %></li>
+          <li><%= link_to 'ジャンル一覧', admins_genres_path,class: 'btn-sm' %></li>
+          <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete,class: 'btn-sm' %></li>
+        <% else %>
+          <li>
+            <%= link_to items_path do %>
+              <i class="fa fa-birthday-cake">商品一覧</i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path do %>
+              <i class="glyphicon glyphicon-new-window" aria-hidden="true">新規登録</i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to  new_user_session_path do%>
+              <i class="glyphicon glyphicon-log-in" aria-hidden="true">ログイン</i>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>

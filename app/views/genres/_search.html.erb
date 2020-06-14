@@ -1,0 +1,10 @@
+<div id="genre-search">
+  <h2>ジャンル検索</h2>
+  <ul>
+    <% @genres.each do |genre| %>
+      <li>
+        <%= link_to genre.name, genres_search_path(genre) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

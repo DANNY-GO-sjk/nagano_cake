@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-3 col-xs-12">
+    <%= render 'genres/search', genres: @genres %>
+  </div>
+  <div class='col-md-9 col-xs-12'>
+    <h2><i class="fa fa-birthday-cake"></i><%= @title %>一覧</h2>
+    <p>(全<%= @items.count %>件)</p>
+    <%= render 'items/item_index', items: @items %>
+    <div class="child-center">
+      <%= paginate @items %>
+    </div>
+  </div>
+</div>

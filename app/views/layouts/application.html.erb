@@ -4,12 +4,24 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class='body'>
+      <%=render 'layouts/header' %>
+      <% if flash[:notice] %>
+        <div class='alert alert-success'>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <div class='container'>
+        <%= yield %>
+      </div>
+    </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

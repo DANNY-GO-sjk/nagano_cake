@@ -1,0 +1,72 @@
+<div class="container">
+	<div class="row">
+		<h2>注文履歴詳細</h2>
+	</div>
+	<div class="row">
+		<table class="table table-bordered">
+				<tr>
+					<th>購入者</th>
+					<td><%= @order.user.family_name %><%= @order.user.first_name %></td>
+				</tr>
+				<tr>
+					<th>配送先</th>
+					<td><%= @order.address %></td>
+				</tr>
+				<tr>
+					<th>支払い方法</th>
+					<td><%= @order.payment_method %></td>
+				</tr>
+				<tr>
+					<%= form_for(@order, url:"/admins/orders/#{@order.id}") do |f| %>
+					<%= f.label :progress, '注文ステータス' %>
+					<td><%= f.select :progress, Order.progresses.keys.map {|k| [k,k]}, {} %>
+					<span><%= f.submit '更新', class: "btn btn-default" %></span></td>
+					<% end %>
+				</tr>
+		</table>
+	</div>
+	<div class="row">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価（税込）</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th>製作ステータス</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @order.order_items.each do |order_item| %>
+				<tr>
+					<td><%= order_item.item.name %></td>
+					<td><%= order_item.price %></td>
+          <td><%= order_item.how_many %></td>
+          <td><%= order_item.price * order_item.how_many %></td>
+          <%= form_for(order_item, url:"/admins/order_items/#{order_item.id}") do |f| %>
+          <td><%= f.select :progress, OrderItem.progresses.keys.map {|k| [k,k]}, {} %></td>
+          <td><%= f.submit '更新', class: "btn btn-default" %></td>
+          <% end %>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<table class='table table-bordered'>
+			<tr>
+				<th>商品合計</th>
+				<td><%= @order.total_price %></td>
+			</tr>
+			<tr>
+				<th>送料</th>
+				<td><%= @order.shipping_price %></td>
+			</tr>
+			<tr>
+				<th>請求金額合計</th>
+				<td><%= @order.total_price + @order.shipping_price %></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+

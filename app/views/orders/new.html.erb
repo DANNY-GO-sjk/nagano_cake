@@ -1,0 +1,62 @@
+<div class='row' id="new-order">
+  <div class="col-md-10 col-md-offset-1 col-xs-12">
+    <%= form_with model: @order, url: order_confirm_path, local: true do |f| %>
+      <h2><i class="fa fa-table"></i>注文入力情報</h2>
+      <% if flash[:alert] %>
+        <div class="row alert alert-warning">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      <h3>支払方法</h3>
+      <%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>
+      <%= f.label :payment_method_クレジットカード, 'クレジットカード' %>
+      <%= f.radio_button :payment_method, :銀行振込 %>
+      <%= f.label :payment_method_銀行振込, '銀行振込' %>
+
+      <h3>お届け先</h3>
+      <div class="row select-address">
+        <div class="col-md-3 col-xs-12">
+          <%= radio_button_tag(:s_address, "r1", checked: "checked") %>
+          <%= label_tag(:s_address_r1, "ご自身の住所") %>
+        </div>
+        <div class="col-md-9 col-xs-12">
+          <p><%= current_user.postcode %></p>
+          <p><%= current_user.address %></p>
+          <p><%= current_user.full_name %></p>
+        </div>
+      </div>
+
+      <div class="row select-address">
+        <div class="col-md-3 col-xs-12">
+          <%= radio_button_tag(:s_address, "r2") %>
+          <%= label_tag(:s_address_r2, "登録済み住所から選択") %>
+        </div>
+        <div class="col-md-9 col-xs-12">
+          <%= collection_select :shipping_address, :id, current_user.shipping_addresses, :id, :full_address %><br>
+        </div>
+      </div>
+
+      <div class="row select-address">
+        <div class="col-md-3 col-xs-12">
+          <%= radio_button_tag(:s_address, "r3") %>
+          <%= label_tag :s_address_r3, "新しいお届け先" %>
+        </div>
+        <div class="col-md-9 col-xs-12">
+          <div class="row-form">
+            <%= label_tag :r3_postcode, '郵便番号' %>
+            <%= text_field_tag :r3_postcode, '', class: "form-control" %>
+          </div>
+          <div class="row-form">
+            <%= label_tag :r3_address, '住所' %>
+            <%= text_field_tag :r3_address, '', class: "form-control", size: "50" %>
+          </div>
+          <div class="row-form">
+            <%= label_tag :r3_receiver, '宛名' %>
+            <%= text_field_tag :r3_receiver, '', class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <%= f.submit "確認画面へ進む",class:'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

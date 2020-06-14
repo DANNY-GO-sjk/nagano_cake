@@ -1,0 +1,54 @@
+<div class='row'>
+	<div class='col-xs-5'>
+	<h2>商品詳細</h2>
+		<%= attachment_image_tag @item, :image, format: 'jpeg', size: "257x182" %>
+	</div>
+	<div class='col-xs-7'>
+		<div class='row'>
+			<div class='col-xs-5'>
+				<h4>商品名</h4>
+			</div>
+			<div class='col-xs-5'>
+				 <span><h4><%= @item.name %></h4></span>
+			</div>
+		</div>
+
+		<div class='row'>
+			<div class='col-xs-5'>
+				<h4>商品説明</h4>
+			</div>
+			<div class='col-xs-5'>
+				  <span><h4><%= @item.explanation %></h4></span>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-xs-5'>
+				<h4>ジャンル</h4>
+			</div>
+			<div class='col-xs-5'>
+				<span><h4><%= @item.genre.name %></h4></span>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-xs-5'>
+				<h4>税込価格<br>(税抜価格)</h4>
+			</div>
+			<div class='col-xs-5'>
+				<span><h4><%= @item.tax_included_price(@item.price) %>(<%= @item.price %>)</h4></span>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-xs-5'>
+				<h4>販売ステータス</h4>
+			</div>
+			<div class='col-xs-5'>
+				<span><h4><%= @item.is_valid %></h4></span>
+			</div>
+		</div>
+	</div>
+	<div class='col-xs-offset-10'>
+		<%= link_to "編集する", edit_admins_item_path(@item.id), class:"btn btn-info", data: {"turbolinks" => false} %>
+	</div>
+</div>
+
+

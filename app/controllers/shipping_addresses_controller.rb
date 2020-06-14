@@ -8,13 +8,14 @@ class ShippingAddressesController < ApplicationController
 
   def create
     @shipping_address = ShippingAddress.new(shipping_address_params)
-    @shipping_address.user_id = current_user.id # 配送先に配送先に会員idを登録
+    @shipping_address.user_id = current_user.id # 配送先に会員idを登録
     if @shipping_address.save
       redirect_to shipping_addresses_path, notice: '配送先情報を登録しました'
     else
       flash[:alert] = "入力されていない箇所があります"
-      @shipping_addresses = current_user.shipping_addresses
+
       render 'index'
+
     end
   end
 

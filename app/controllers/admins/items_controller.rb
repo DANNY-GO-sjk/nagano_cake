@@ -15,7 +15,8 @@ class Admins::ItemsController < ApplicationController
       flash[:notice] = "商品登録が完了しました"
       redirect_to admins_items_path
     else
-      render :new
+      flash[:alert] = "入力されていない箇所があります"
+      render 'new'
     end
   end
 
@@ -33,7 +34,8 @@ class Admins::ItemsController < ApplicationController
       flash[:notice] = "編集を保存しました"
       redirect_to admins_item_path(@item.id)
     else
-      render :edit
+      flash[:alert] = "入力されていない箇所があります"
+      render 'edit'
     end
   end
 

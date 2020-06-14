@@ -10,12 +10,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = current_user
-    if user.update(user_params)
-      redirect_to users_path(user), notice: '登録情報を変更しました'
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to users_path(@user), notice: '登録情報を変更しました'
     else
       flash[:alert] = "入力されていない箇所があります"
-      render 'edit'
+      render 'edit_info'
     end
   end
 

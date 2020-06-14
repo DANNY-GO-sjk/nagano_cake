@@ -11,6 +11,7 @@ class Admins::OrderItemsController < ApplicationController
     if params[:order_item][:progress] == "製作完了" && all_items_progress?
       @order.update(progress: "発送準備中")
     end
+    flash[:notice] = "製作ステータスを変更しました"
     redirect_to admins_order_path(@order.id)
   end
 

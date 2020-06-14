@@ -21,7 +21,7 @@
             <%= f.submit 'カートに入れる', class:'btn btn-primary' %>
           <% end %>
           <% if flash[:alert] %>
-            <div>
+            <div class="alert alert-warning">
               <%= flash[:alert] %>
             </div>
           <% end %>

@@ -55,6 +55,11 @@
       </div>
       <%= f.submit submit_text %>
     <% end %>
+    <% if flash[:alert] %>
+      <div class="row alert alert-warning">
+          <%= flash[:alert] %>
+      </div>
+    <% end %>
   </div>
   <%= javascript_include_tag 'admins/image_preview.js' %>
 </div>

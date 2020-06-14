@@ -12,7 +12,8 @@ class Admins::GenresController < ApplicationController
       flash[:notice] = "ジャンル登録が完了しました"
       redirect_to admins_genres_path
     else
-      @genres = Genres.all
+      @genres = Genre.all
+      flash[:alert] = "入力されていない箇所があります"
       render :index
     end
   end
@@ -27,6 +28,7 @@ class Admins::GenresController < ApplicationController
       flash[:notice] = "編集を保存しました"
       redirect_to admins_genres_path
     else
+      flash[:alert] = "入力されていない箇所があります"
       render :edit
     end
   end

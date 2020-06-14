@@ -36,7 +36,7 @@ class ShippingAddressesController < ApplicationController
   def destroy
     @shipping_address = ShippingAddress.find(params[:id])
     @shipping_address.destroy
-    redirect_to shipping_addresses_path
+    redirect_to shipping_addresses_path, notice: '配送先情報を削除しました'
   end
 
   private

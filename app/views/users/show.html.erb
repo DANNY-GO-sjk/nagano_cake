@@ -1,31 +1,34 @@
 <h2><i class="fa fa-address-card"></i>マイページ</h2>
 <h3><i class="fa fa-address-book"></i>登録情報</h3>
-<%= link_to "編集する",users_edit_info_path, class: "btn-sm btn-success" %>
-<%= link_to "パスワードを変更する",edit_user_registration_path, class: "btn-sm btn-success" %>
-	<table class="table table-bordered">
-		<tbody>
-			<tr>
-				<th>氏名</th>
-				<th><%= @user.family_name %></th>
-			</tr>
-			<tr>
-				<th>カナ</th>
-				<th><%= @user.family_name_yomi %></th>
-			</tr>
-			<tr>
-				<th>郵便番号</th>
-				<th><%= @user.postcode %></th>
-			</tr>
-			<tr>
-				<th>電話番号</th>
-				<th><%= @user.phone_number %></th>
-			</tr>
-			<tr>
-				<th>メールアドレス</th>
-				<th><%= @user.email %></th>
-			</tr>
-		</tbody>
-	</table>
+<%= link_to "編集する", users_edit_info_path, class: "btn btn-sm btn-success" %>
+<%= link_to "パスワードを変更する", edit_user_registration_path, class: "btn btn-sm btn-success" %>
+
+<div class="table-wrapper">
+  <table class="table table-bordered">
+    <tbody>
+      <tr class="row">
+        <th class="col-xs-3">氏名</th>
+        <td class="col-xs-9"><%= @user.family_name %></td>
+      </tr>
+      <tr class="row">
+        <th class="col-xs-3">カナ</th>
+        <td class="col-xs-9"><%= @user.family_name_yomi %></td>
+      </tr>
+      <tr class="row">
+        <th class="col-xs-3">郵便番号</th>
+        <td class="col-xs-9"><%= @user.postcode %></td>
+      </tr>
+      <tr class="row">
+        <th class="col-xs-3">電話番号</th>
+        <td class="col-xs-9"><%= @user.phone_number %></td>
+      </tr>
+      <tr class="row">
+        <th class="col-xs-3">メールアドレス</th>
+        <td class="col-xs-9"><%= @user.email %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <h3><i class="fa fa-truck"></i>配送先</h3>
 <%= link_to '一覧を見る', shipping_addresses_path, class: 'btn btn-primary' %>
 <h3><i class="fa fa-table"></i>注文履歴</h3>

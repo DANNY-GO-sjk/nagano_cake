@@ -1,3 +1,16 @@
 // Place all the styles related to the items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#item-show-content {
+  #item-explanation {
+    white-space: pre-wrap;
+  }
+  form {
+    float: right;
+  }
+}
+
+.prev-image {
+  object-fit: cover;
+}

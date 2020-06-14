@@ -35,16 +35,27 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 10px;
+}
+
 body{
   min-height: 100vh;
   position: relative;
   padding-bottom: 60px;/*←footerの高さ*/
   box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
   font-family: 'NotoSansJP-Light';
+  font-size: 1.6rem;
 }
 
 h1, h2, h3, h4, h5 {
   font-family: 'GenJyuuGothic-Normal';
+}
+
+h2 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: solid 1px lightgray;
 }
 
 header{
@@ -99,5 +110,41 @@ footer{
   text-align: center;
   position: absolute;/*←絶対位置*/
   bottom: 0;/*下に固定*/
+  p {
+    margin: 0;
+  }
+}
+
+.table-wrapper, .form-wrapper {
+  overflow: auto;
+}
+
+th {
+  min-width: 10rem;
+  background-color: #eee;
+}
+
+td {
+  min-width: 10rem;
+}
+
+.row-form {
+  margin-bottom: 1rem;
+}
+
+.btn {
+  margin: 1rem auto;
+}
+.child-center {
+  text-align: center;
+}
+
+.f-right {
+  float: right;
+}
+
+.form-control {
+  display: inline-block;
+  width: auto;
 }
 

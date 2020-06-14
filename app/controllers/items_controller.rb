@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
     @genres = Genre.where(is_valid: true)
     # 商品全てを取得
     @items = Item.page(params[:page]).per(8)
+    @title = '商品'
   end
 
   def show

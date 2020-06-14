@@ -1,27 +1,25 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-3">
-         <%= render 'genres/search', genres: @genres %>
-    </div>
-
-    <div class='col-xs-9'>
+<div class="row">
+  <div class="col-md-3 col-xs-12">
+    <%= render 'genres/search', genres: @genres %>
+  </div>
+  <div class='col-md-9 col-xs-12'>
+    <div id="item-show-content">
       <div class='row'>
-        <div class='col-xs-7'>
-            <%= attachment_image_tag @item, :image, :fill, 700, 550, fallback: "no_image.jpg", size: "300x200" %>
-        </div>
-        <div class='col-xs-5'>
-          <h2><%= @item.name %></h2>
-          <p><%= @item.explanation %></p><br>
-          <p>¥<%= @item.tax_included_price(@item.price) %>(税込)</p>
-
-          <div style='margin:20px; text-aligin: right;'>
-            <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
-              <%= f.select :how_many, options_for_select(1..10), include_blank: "個数選択" %>
-              <%= f.hidden_field :user_id, value: current_user.id %>
-              <%= f.hidden_field :item_id, value: @item.id %>
-              <%= f.submit 'カートに入れる', class: "btn btn-primary" %>
-            <% end %>
+        <div class='col-md-7 col-xs-12'>
+          <div class="thumbnail">
+            <%= attachment_image_tag @item, :image, :fill, 500, 500, fallback: "no_image.jpg", size: "500x500" %>
           </div>
+        </div>
+        <div class='col-md-5 col-xs-12'>
+          <h2><%= @item.name %></h2>
+          <p id="item-explanation"><%= @item.explanation %></p>
+          <p>¥<%= @item.tax_included_price(@item.price) %>(税込)</p>
+          <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+            <%= f.select :how_many, options_for_select(1..10), include_blank: "個数選択" %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.submit 'カートに入れる', class:'btn btn-primary' %>
+          <% end %>
           <% if flash[:alert] %>
             <div class="alert alert-warning">
               <%= flash[:alert] %>
@@ -29,7 +27,6 @@
           <% end %>
         </div>
       </div>
-
     </div>
   </div>
 </div>

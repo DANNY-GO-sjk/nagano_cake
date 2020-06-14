@@ -5,6 +5,7 @@ class GenresController < ApplicationController
     @genres = Genre.where(is_valid: true)
     @genre = Genre.find(params[:id])
     @items = @genre.items.all.page(params[:page]).per(8)
+    @title = @genre.name
     render 'items/index'
   end
 end

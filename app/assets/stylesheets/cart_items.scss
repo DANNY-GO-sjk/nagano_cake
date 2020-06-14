@@ -1,3 +1,21 @@
 // Place all the styles related to the cart_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#cart-destroy-all {
+  width: 10em;
+  float: right;
+  margin: 20px 5px 5px 5px;
+}
+table {
+  input {
+    display: inline-block;
+  }
+  input[type='number']{
+    width: 50%;
+  }
+}
+
+#total-price {
+  max-width: 400px;
+}

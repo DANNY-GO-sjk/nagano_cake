@@ -1,18 +1,12 @@
 <div class="row">
-  <div class="col-xs-4">
-    <h2><i class="fa fa-cart-arrow-down"></i>ショッピングカート</h2>
-    <%= link_to "テスト用/ケーキをカートに追加", cart_items_path, method: :post %>
-  </div>
-  <div class="col-xs-offset-6 col-xs-2">
-    <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger" %>
-  </div>
+  <h2 class="col-md-10 col-xs-12"><i class="fa fa-cart-arrow-down"></i>ショッピングカート</h2>
+  <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger col-md-2 col-xs-12", id: "cart-destroy-all" %>
 </div>
-<% total_price = 0 %><%#= FIX: 仮設置 %>
-<div class="row">
-  <div class='col-xs-8'></div>
+<% total_price = 0 %>
+<div class="table-wrapper">
   <table class="table table-bordered">
     <thead>
-      <tr>
+      <tr class="row">
         <th class="col-xs-4">商品名</th>
         <th class="col-xs-2">単価（税込み）</th>
         <th class="col-xs-2">数量</th>
@@ -23,17 +17,17 @@
 
     <tbody>
       <% @cart_items.each do |cart_item| %>
-        <tr>
-          <td><%= cart_item.item.name %></td>
-          <td><%= cart_item.unit_price %></td>
-          <td>
+        <tr class="row">
+          <td class="col-xs-4"><%= cart_item.item.name %></td>
+          <td class="col-xs-2"><%= cart_item.unit_price %></td>
+          <td class="col-xs-2">
             <%= form_with model: cart_item do |f| %>
               <%= f.number_field :how_many %>
-              <%= f.submit '変更',class: "btn-sm btn-info" %>
+              <%= f.submit '変更',class: "btn btn-sm btn-info" %>
             <% end %>
           </td>
-          <td><%= cart_item.subtotal_price %>円</td>
-          <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete,class: "btn btn-danger" %></td>
+          <td class="col-xs-2"><%= cart_item.subtotal_price %>円</td>
+          <td class="col-xs-2"><%= link_to "削除する", cart_item_path(cart_item), method: :delete,class: "btn btn-danger" %></td>
         </tr>
         <% total_price += cart_item.subtotal_price %>
       <% end %>
@@ -46,21 +40,21 @@
   </div>
 <% end %>
 <div class="row">
-  <div class="col-xs-2">
+  <div class="col-md-2 col-xs-12">
     <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
   </div>
-  <div class="col-xs-offset-6 col-xs-4">
-    <table class="table table-bordered">
-      <tr>
-        <th>合計金額</th>
-        <td><%= total_price %>円</td>
-      </tr>
-    </table>
+  <div class="col-md-offset-6 col-md-4 col-xs-12">
+    <div class="table-wrapper">
+      <table class="table table-bordered" id="total-price">
+        <tr>
+          <th>合計金額</th>
+          <td><%= total_price %>円</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-offset-4 col-xs-4">
-    <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
-  </div>
+<div class="child-center">
+  <%= link_to "情報入力に進む", new_order_path ,class: "btn btn-lg btn-success" %>
 </div>

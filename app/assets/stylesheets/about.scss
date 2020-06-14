@@ -1,22 +1,18 @@
 #main-visual2 {
-  height: 100vh;
+  height: calc(100vh - 120px);
   width: 100%;
   background-image: url(image3.jpg);
   background-size: cover;
   padding: 0;
   color: white;
-  font-size: 1.2em;
+  font-size: 1em;
   line-height: 2em;
   .black-filter {
-    height: 100vh;
-    padding: 3em;
+    height: calc(100vh - 120px);
+    padding: 1rem;
   }
   h2 {
     padding: 5px;
     border-bottom: dashed 3px white;
   }
-}
-
-.black-filter {
-  background-color: rgba(0,0,0,0.6);
 }

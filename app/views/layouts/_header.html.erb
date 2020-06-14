@@ -2,7 +2,7 @@
   <nav class='nav navbar-inverse' >
     <div class='navbar-header'>
       <%= link_to (home_path) do %>
-        <span id="logo">LOGO</span>
+        <%= image_tag 'logo.png', id: "logo" %>
       <% end %>
       <% if user_signed_in? %>
         <span id="name">ようこそ<%= current_user.full_name %>さん!!</span>
